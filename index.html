@@ -299,6 +299,10 @@
     /* ── RESPONSIVE ── */
     @media(max-width: 700px) {
       .paths-grid { grid-template-columns: 1fr; }
+      #trust > div > div { grid-template-columns: 1fr 1fr; }
+      #trust > div > div > div { border-left: none !important; border-top: 1px solid var(--border); }
+      #trust > div > div > div:nth-child(odd) { border-left: none !important; }
+      #trust > div > div > div:nth-child(2), #trust > div > div > div:nth-child(4) { border-left: 1px solid var(--border) !important; }
       .rev-grid { grid-template-columns: 1fr; }
       nav ul { display: none; }
       .section-header { flex-direction: column; gap: 0.2rem; }
@@ -866,6 +870,36 @@ footer {
   </div>
 </section>
 
+<!-- TRUST SECTION -->
+<section id="trust" style="padding:4rem var(--pad-x);border-top:1px solid var(--border);background:var(--surface);">
+  <div style="max-width:var(--max-w);margin:0 auto;">
+    <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:400;letter-spacing:-0.02em;color:var(--black);margin-bottom:2.5rem;text-align:center;">Built for quality. Trusted to get it right.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;">
+
+      <div style="background:var(--white);padding:1.8rem 1.6rem;">
+        <p style="font-size:0.66rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;">Clear Communication</p>
+        <p style="font-size:0.86rem;color:var(--ink);line-height:1.7;font-weight:300;">You'll always know what's happening. Fast responses, no guessing.</p>
+      </div>
+
+      <div style="background:var(--white);padding:1.8rem 1.6rem;border-left:1px solid var(--border);">
+        <p style="font-size:0.66rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;">Approved Before Stitching</p>
+        <p style="font-size:0.86rem;color:var(--ink);line-height:1.7;font-weight:300;">Every order gets a preview so we're fully aligned before anything is made.</p>
+      </div>
+
+      <div style="background:var(--white);padding:1.8rem 1.6rem;border-left:1px solid var(--border);">
+        <p style="font-size:0.66rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;">Clean, Quality Finish</p>
+        <p style="font-size:0.86rem;color:var(--ink);line-height:1.7;font-weight:300;">Sharp embroidery, soft backing, and attention to detail on every piece.</p>
+      </div>
+
+      <div style="background:var(--white);padding:1.8rem 1.6rem;border-left:1px solid var(--border);">
+        <p style="font-size:0.66rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;">Quick Turnaround</p>
+        <p style="font-size:0.86rem;color:var(--ink);line-height:1.7;font-weight:300;">Most orders are completed quickly without sacrificing quality.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- OUR WORK -->
 <section id="work">
   <div class="section-header">
@@ -1219,7 +1253,7 @@ footer {
     <div style="max-width:580px;margin:0 auto;text-align:center;">
       <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.7rem;">Why ThreadLabs</span>
       <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-0.03em;color:var(--black);line-height:1.15;margin-bottom:1rem;">Built while running<br/>my own shop.</h2>
-      <p style="font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:1.8rem;">I built these tools while running Triple Thread Customs and wanted simple tools that actually help. No bloat, no subscriptions — just spreadsheets that work.</p>
+      <p style="font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:1.8rem;">I built these tools while running Triple Thread Customs and wanted simple tools that actually help. No bloat, no subscriptions — just clean, practical tools.</p>
       <a href="https://www.etsy.com/shop/TripleThreadCoShop" target="_blank" class="btn">
         Shop all tools on Etsy
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
