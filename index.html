@@ -20,10 +20,9 @@
     9.  images/fluffy.PNG
     10. images/let good times roll hat.PNG
     11. images/lion fc.PNG
-    12. images/name hats.PNG
-    13. images/amy dentistry.PNG
-    14. images/de todo un poco.PNG
-    15. images/h&m.jpg
+    12. images/amy dentistry.PNG
+    13. images/de todo un poco.PNG
+    14. images/h&m.jpg
 
   NOTE: filenames are case-sensitive. Match exactly what is
   in your GitHub images/ folder including caps and extension.
@@ -868,6 +867,35 @@ footer {
       letter-spacing: -0.02em; color: var(--black);
     }
 
+  
+    /* ── HOMEPAGE CARD IMAGES ── */
+    .homepage-card-media {
+      width: 100%;
+      height: 260px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .homepage-card-img {
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+    }
+    .homepage-card-img.apparel {
+      max-width: 88%;
+      max-height: 240px;
+      width: auto;
+      height: auto;
+    }
+    .homepage-card-img.tools {
+      max-width: 92%;
+      max-height: 232px;
+      width: auto;
+      height: auto;
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -898,7 +926,7 @@ footer {
 <section id="paths">
   <div class="paths-grid">
     <div class="card fu d4">
-      <img class="card-img" src="images/morgan w.png" alt="Custom embroidery"/>
+      <div class="homepage-card-media"><img class="homepage-card-img apparel" src="images/morgan w.png" alt="Custom embroidery"/></div>
       <div class="card-body">
         <span class="card-label">Custom Embroidery & DTF · Raleigh, NC</span>
         <h2>Custom Apparel</h2>
@@ -910,7 +938,7 @@ footer {
       </div>
     </div>
     <div class="card fu d5">
-      <img class="card-img" src="images/Embroidery Pricing Calculator.png" alt="Business Tools"/>
+      <div class="homepage-card-media"><img class="homepage-card-img tools" src="images/Embroidery Pricing Calculator.png" alt="Business Tools"/></div>
       <div class="card-body">
         <span class="card-label">ThreadLabs · Digital Tools for Makers</span>
         <h2>Business Tools for Embroiderers</h2>
