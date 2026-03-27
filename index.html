@@ -5,25 +5,26 @@
 =================================================================
 
   CARD IMAGES (homepage path cards):
-    Custom Apparel card : images/morgan w.png
+    Custom Apparel card : images/gril dad with model.PNG
     Business Tools card : images/Embroidery Pricing Calculator.png
 
   CAROUSEL (16 slides, in order):
-    1.  images/gril dad with model.png
+    1.  images/gril dad with model.PNG
     2.  images/morgan w.png
     3.  images/jazzmine close up.png
-    4.  images/jazzmine hoodie.png
+    4.  images/jazzmine hoodie.PNG
     5.  images/couple blanket.png
-    6.  images/ramirez model.png
-    7.  images/construction.png
-    8.  images/george strait.png
-    9.  images/fluffy.png
-    10. images/let good times roll hat.png
-    11. images/lion fc.png
-    12. images/name hats.png
-    13. images/amy dentistry.png
-    14. images/de todo un poco.png
-    15. images/h&m.jpg
+    6.  images/ramirez model.PNG
+    7.  images/construction.PNG
+    8.  images/george strait.PNG
+    9.  images/fluffy.PNG
+    10. images/let good times roll hat.PNG
+    11. images/lion fc.PNG
+    12. images/name hats.PNG
+    13. images/amy dentistry.PNG
+    14. images/de todo un poco.PNG
+    15. images/bandanas.PNG
+    16. images/h&m.jpg
 
   NOTE: filenames are case-sensitive. Match exactly what's
   in your GitHub images/ folder including caps and extension.
@@ -145,7 +146,14 @@
       transition: box-shadow 0.25s, transform 0.25s;
     }
     .card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-3px); }
-    .card-img { width: 100%; height: 260px; object-fit: cover; object-position: center top; background: #ffffff; }
+    .card-img {
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      object-position: center center;
+      background: #ffffff;
+      padding: 16px;
+    }
     .card-visual {
       height: 260px; background: var(--black);
       display: grid; grid-template-columns: 1fr 1fr;
@@ -889,7 +897,7 @@ footer {
 <section id="paths">
   <div class="paths-grid">
     <div class="card fu d4">
-      <img class="card-img" src="images/gril dad with model.PNG" alt="Custom embroidery"/>
+      <img class="card-img" src="images/morgan w.png" alt="Custom embroidery"/>
       <div class="card-body">
         <span class="card-label">Custom Embroidery & DTF · Raleigh, NC</span>
         <h2>Custom Apparel</h2>
@@ -901,7 +909,7 @@ footer {
       </div>
     </div>
     <div class="card fu d5">
-      <img class="card-img" src="images/Embroidery Pricing Calculator.png" alt="Embroidery Pricing Calculator"/>
+      <img class="card-img" src="images/Embroidery Pricing Calculator.png" alt="Business Tools"/>
       <div class="card-body">
         <span class="card-label">ThreadLabs · Digital Tools for Makers</span>
         <h2>Business Tools for Embroiderers</h2>
