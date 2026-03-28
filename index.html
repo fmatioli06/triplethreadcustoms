@@ -5,7 +5,7 @@
 =================================================================
 
   CARD IMAGES (homepage path cards):
-    Custom Apparel card : images/jazzmine hoodie.PNG
+    Custom Apparel card : images/morgan w.png
     Business Tools card : images/Embroidery Pricing Calculator.png
 
   CAROUSEL (15 slides, in order):
@@ -897,6 +897,67 @@ footer {
       width: auto;
       height: auto;
     }
+  
+    /* ── HERO CTA BUTTONS ── */
+    .hero-ctas {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .hero-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--black);
+      text-decoration: none;
+      padding: 0.65rem 1.3rem;
+      border: 1.5px solid var(--black);
+      border-radius: var(--radius-sm);
+      transition: background 0.15s, border-color 0.15s;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .hero-cta-primary:hover {
+      background: #333;
+      border-color: #333;
+    }
+    .hero-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--black);
+      background: transparent;
+      text-decoration: none;
+      padding: 0.65rem 1.3rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .hero-cta-secondary:hover {
+      border-color: var(--black);
+      background: var(--surface);
+    }
+    .hero-cta-label {
+      width: 100%;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+    .hero-cta-primary svg,
+    .hero-cta-secondary svg { width: 13px; height: 13px; flex-shrink: 0; }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -921,12 +982,23 @@ footer {
   <div class="pill fu d1"><span class="pill-dot"></span>Custom Apparel &nbsp;·&nbsp; Business Tools &nbsp;·&nbsp; Raleigh, NC</div>
   <h1 class="fu d2">Custom apparel.<br/><em>Tools to run your shop.</em></h1>
   <p class="lead fu d3">We stitch custom apparel for people and brands — and we build the tools that help embroidery businesses run smarter.</p>
+  <div class="hero-ctas fu d4">
+    <p class="hero-cta-label">Choose your path</p>
+    <button class="hero-cta-primary" onclick="openOverlay()">
+      Start Your Order
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </button>
+    <a href="#" onclick="openPage('threadlabs');return false;" class="hero-cta-secondary">
+      Browse Tools
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
 </section>
 
 <!-- TWO PATHS -->
 <section id="paths">
   <div class="paths-grid">
-    <div class="card fu d4">
+    <div class="card fu d6">
       <div class="homepage-card-media"><img class="homepage-card-img apparel" src="images/jazzmine hoodie.PNG" alt="Custom embroidery"/></div>
       <div class="card-body">
         <span class="card-label">Custom Embroidery & DTF · Raleigh, NC</span>
@@ -938,7 +1010,7 @@ footer {
         </button>
       </div>
     </div>
-    <div class="card fu d5">
+    <div class="card fu d6">
       <div class="homepage-card-media"><img class="homepage-card-img tools" src="images/Embroidery Pricing Calculator.png" alt="Business Tools"/></div>
       <div class="card-body">
         <span class="card-label">ThreadLabs · Digital Tools for Makers</span>
