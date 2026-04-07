@@ -14,3 +14,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           wranglerVersion: '4.80.0'
+          preCommands: rm -rf node_modules
