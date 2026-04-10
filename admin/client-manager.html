@@ -10,7 +10,6 @@
   --bg: #F6F7F9;
   --surface: #FFFFFF;
   --surface2: #FBFCFD;
-  --surface3: #E1E4EA;
   --text: #111827;
   --text2: #5B6575;
   --text3: #8B95A5;
@@ -33,388 +32,109 @@
   --shadow-md: 0 8px 28px rgba(17,24,39,0.10);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-/* CONFIG SCREEN */
-#config-screen {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.config-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: var(--shadow-md);
-}
-.config-card h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.06em;
-  margin-bottom: 6px;
-}
+#config-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.config-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; max-width: 480px; width: 100%; box-shadow: var(--shadow-md); }
+.config-card h1 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.06em; margin-bottom: 6px; }
 .config-card p { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 24px; }
 .config-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .config-field label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); }
-.config-field input {
-  padding: 10px 12px;
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  color: var(--text);
-  outline: none;
-}
+.config-field input { padding: 10px 12px; border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); outline: none; }
 .config-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
 .config-hint { font-size: 11px; color: var(--text3); margin-top: 4px; line-height: 1.5; }
-.btn-primary {
-  width: 100%;
-  padding: 12px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: opacity 0.15s;
-}
+.btn-primary { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; margin-top: 8px; transition: opacity 0.15s; }
 .btn-primary:hover { opacity: 0.88; }
 
-/* APP */
 #app { display: none; }
 
-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
 .header-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; }
 .header-sub { font-size: 10px; color: var(--text3); letter-spacing: 0.10em; text-transform: uppercase; margin-top: 1px; }
 .header-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
 
-.tab-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  padding: 0 24px;
-}
-.tab-btn {
-  padding: 12px 16px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: none;
-  background: transparent;
-  color: var(--text3);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all 0.15s;
-}
+.tab-bar { background: var(--surface); border-bottom: 1px solid var(--border); display: flex; padding: 0 24px; }
+.tab-btn { padding: 12px 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border: none; background: transparent; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--text); border-bottom-color: var(--text); }
 
-.panel { display: none; padding: 24px; max-width: 1100px; margin: 0 auto; }
+.panel { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; }
 .panel.active { display: block; }
 
-/* TOOLBAR */
-.toolbar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.search-input {
-  flex: 1;
-  min-width: 200px;
-  padding: 9px 14px;
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  outline: none;
-  background: var(--surface);
-}
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.search-input { flex: 1; min-width: 200px; padding: 9px 14px; border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; background: var(--surface); }
 .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
-.btn-add {
-  padding: 9px 18px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.15s;
-}
+.btn-add { padding: 9px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
 .btn-add:hover { opacity: 0.88; }
-.btn-outline {
-  padding: 9px 14px;
-  background: transparent;
-  color: var(--text2);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-}
+.btn-outline { padding: 9px 14px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+select.filter-select { padding: 9px 12px; border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text2); background: var(--surface); outline: none; cursor: pointer; }
 
-select.filter-select {
-  padding: 9px 12px;
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  color: var(--text2);
-  background: var(--surface);
-  outline: none;
-  cursor: pointer;
-}
-
-/* TABLE */
-.table-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
+.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-thead th {
-  text-align: left;
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--text3);
-  padding: 10px 16px;
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  white-space: nowrap;
-}
-tbody tr {
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: background 0.1s;
-}
+thead th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); padding: 10px 12px; background: var(--surface2); border-bottom: 1px solid var(--border); white-space: nowrap; }
+tbody tr { border-bottom: 1px solid var(--border); }
 tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: var(--accent-soft); }
-tbody td { padding: 12px 16px; color: var(--text2); vertical-align: middle; }
+tbody td { padding: 8px 12px; color: var(--text2); vertical-align: middle; }
 tbody td.primary { color: var(--text); font-weight: 500; }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
+/* INLINE EDITING */
+.editable { cursor: pointer; border-radius: 4px; padding: 3px 5px; margin: -3px -5px; transition: background 0.1s; }
+.editable:hover { background: var(--accent-soft); }
+.inline-input { padding: 4px 8px; border: 1px solid var(--accent); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--surface); outline: none; width: 100%; min-width: 80px; box-shadow: 0 0 0 3px var(--accent-dim); }
+.inline-select { padding: 4px 8px; border: 1px solid var(--accent); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text); background: var(--surface); outline: none; box-shadow: 0 0 0 3px var(--accent-dim); cursor: pointer; }
+
+/* DELETE BUTTON ON ROW */
+.row-delete { opacity: 0; background: var(--red-dim); color: var(--red); border: none; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; white-space: nowrap; }
+tbody tr:hover .row-delete { opacity: 1; }
+
+.badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.03em; white-space: nowrap; }
 .badge.green  { background: var(--green-dim);  color: var(--green); }
 .badge.red    { background: var(--red-dim);    color: var(--red); }
 .badge.amber  { background: var(--amber-dim);  color: var(--amber); }
 .badge.blue   { background: var(--blue-dim);   color: var(--blue); }
 .badge.gray   { background: var(--accent-soft); color: var(--text2); }
 
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text3);
-}
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text3); }
 .empty-state p { font-size: 13px; margin-top: 8px; }
 
-/* MODAL */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(17,24,39,0.45);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(17,24,39,0.45); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.open { display: flex; }
-.modal {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  width: 100%;
-  max-width: 560px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-md);
-}
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+.modal { background: var(--surface); border-radius: var(--radius-lg); padding: 28px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-md); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; }
-.modal-close {
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: var(--text3);
-  padding: 4px 8px;
-  border-radius: 6px;
-}
+.modal-close { background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--text3); padding: 4px 8px; border-radius: 6px; }
 .modal-close:hover { background: var(--accent-soft); color: var(--text); }
 
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .form-grid .full { grid-column: 1 / -1; }
 .field { display: flex; flex-direction: column; gap: 5px; }
 .field label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text2); }
-.field input, .field select, .field textarea {
-  padding: 9px 12px;
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  color: var(--text);
-  background: var(--surface);
-  outline: none;
-  transition: border-color 0.15s;
-}
-.field input:focus, .field select:focus, .field textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
-}
+.field input, .field select, .field textarea { padding: 9px 12px; border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--surface); outline: none; transition: border-color 0.15s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
 .field textarea { resize: vertical; min-height: 72px; }
-.sec-label {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--text3);
-  margin: 18px 0 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
+.sec-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text3); margin: 18px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
-.btn-save {
-  padding: 10px 24px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
+.btn-save { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
 .btn-save:hover { opacity: 0.88; }
-.btn-cancel {
-  padding: 10px 18px;
-  background: transparent;
-  color: var(--text2);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  cursor: pointer;
-}
-.btn-delete {
-  padding: 10px 18px;
-  background: var(--red-dim);
-  color: var(--red);
-  border: 1px solid rgba(209,67,67,0.2);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  cursor: pointer;
-  margin-right: auto;
-}
+.btn-cancel { padding: 10px 18px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer; }
+.btn-delete { padding: 10px 18px; background: var(--red-dim); color: var(--red); border: 1px solid rgba(209,67,67,0.2); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer; margin-right: auto; }
+.error-msg { background: var(--red-dim); color: var(--red); border-radius: var(--radius); padding: 10px 14px; font-size: 12px; margin-bottom: 14px; }
 
-/* DETAIL PANEL */
-.detail-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text2);
-  cursor: pointer;
-  margin-bottom: 20px;
-  padding: 6px 0;
-}
+.detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); cursor: pointer; margin-bottom: 20px; padding: 6px 0; }
 .detail-back:hover { color: var(--text); }
-.detail-header {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.detail-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 16px; box-shadow: var(--shadow); display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
 .detail-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.06em; margin-bottom: 4px; }
 .detail-meta { font-size: 12px; color: var(--text2); line-height: 1.8; }
-.detail-stats {
-  margin-left: auto;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.detail-stats { margin-left: auto; display: flex; gap: 20px; flex-wrap: wrap; }
 .stat { text-align: right; }
 .stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.04em; }
 .stat-val.green { color: var(--green); }
 .stat-val.amber { color: var(--amber); }
 .stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; }
 
-.loading { text-align: center; padding: 40px; color: var(--text3); font-size: 13px; }
-.error-msg { background: var(--red-dim); color: var(--red); border-radius: var(--radius); padding: 10px 14px; font-size: 12px; margin-bottom: 14px; }
-
-/* STATS BAR */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
-  box-shadow: var(--shadow);
-}
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; box-shadow: var(--shadow); }
 .stat-card .val { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.04em; margin-bottom: 2px; }
 .stat-card .lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; }
 
@@ -426,13 +146,12 @@ tbody td.primary { color: var(--text); font-weight: 500; }
   .detail-stats { margin-left: 0; }
   .stat { text-align: left; }
   table { font-size: 12px; }
-  thead th, tbody td { padding: 10px 12px; }
+  thead th, tbody td { padding: 8px 10px; }
 }
 </style>
 </head>
 <body>
 
-<!-- CONFIG SCREEN -->
 <div id="config-screen">
   <div class="config-card">
     <h1>Client Manager</h1>
@@ -451,7 +170,6 @@ tbody td.primary { color: var(--text); font-weight: 500; }
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <header>
     <div>
@@ -469,7 +187,6 @@ tbody td.primary { color: var(--text); font-weight: 500; }
     <button class="tab-btn" onclick="showTab('orders')">Orders</button>
   </div>
 
-  <!-- CUSTOMERS PANEL -->
   <div class="panel active" id="panel-customers">
     <div id="customers-list-view">
       <div class="stats-bar" id="customer-stats"></div>
@@ -497,6 +214,7 @@ tbody td.primary { color: var(--text); font-weight: 500; }
               <th>Orders</th>
               <th>Total Spent</th>
               <th>Outstanding</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="customers-tbody"></tbody>
@@ -506,7 +224,6 @@ tbody td.primary { color: var(--text); font-weight: 500; }
     <div id="customer-detail-view" style="display:none;"></div>
   </div>
 
-  <!-- ORDERS PANEL -->
   <div class="panel" id="panel-orders">
     <div class="stats-bar" id="order-stats"></div>
     <div class="toolbar">
@@ -533,6 +250,7 @@ tbody td.primary { color: var(--text); font-weight: 500; }
           <tr>
             <th>Order ID</th>
             <th>Customer</th>
+            <th>Description</th>
             <th>Type</th>
             <th>Garment</th>
             <th>Qty</th>
@@ -540,6 +258,8 @@ tbody td.primary { color: var(--text); font-weight: 500; }
             <th>Payment</th>
             <th>Status</th>
             <th>Due</th>
+            <th>Submitted</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="orders-tbody"></tbody>
@@ -557,18 +277,9 @@ tbody td.primary { color: var(--text); font-weight: 500; }
     </div>
     <div id="customer-modal-error"></div>
     <div class="form-grid">
-      <div class="field full">
-        <label>Full Name *</label>
-        <input id="c-name" type="text" placeholder="Jane Smith"/>
-      </div>
-      <div class="field">
-        <label>Email</label>
-        <input id="c-email" type="email" placeholder="jane@email.com"/>
-      </div>
-      <div class="field">
-        <label>Phone</label>
-        <input id="c-phone" type="tel" placeholder="(919) 555-0100"/>
-      </div>
+      <div class="field full"><label>Full Name *</label><input id="c-name" type="text" placeholder="Jane Smith"/></div>
+      <div class="field"><label>Email</label><input id="c-email" type="email" placeholder="jane@email.com"/></div>
+      <div class="field"><label>Phone</label><input id="c-phone" type="tel" placeholder="(919) 555-0100"/></div>
       <div class="field">
         <label>Preferred Contact</label>
         <select id="c-contact">
@@ -592,14 +303,8 @@ tbody td.primary { color: var(--text); font-weight: 500; }
           <option value="other">Other</option>
         </select>
       </div>
-      <div class="field">
-        <label>Discount %</label>
-        <input id="c-discount" type="number" min="0" max="100" step="1" placeholder="0" value="0"/>
-      </div>
-      <div class="field full">
-        <label>Notes</label>
-        <textarea id="c-notes" placeholder="Prefers hats, always orders in bulk, VIP customer..."></textarea>
-      </div>
+      <div class="field"><label>Discount %</label><input id="c-discount" type="number" min="0" max="100" step="1" placeholder="0" value="0"/></div>
+      <div class="field full"><label>Notes</label><textarea id="c-notes" placeholder="Prefers hats, always orders in bulk, VIP customer..."></textarea></div>
     </div>
     <div class="modal-actions">
       <button class="btn-delete" id="c-delete-btn" style="display:none;" onclick="deleteCustomer()">Delete</button>
@@ -618,15 +323,9 @@ tbody td.primary { color: var(--text); font-weight: 500; }
     </div>
     <div id="order-modal-error"></div>
     <div class="form-grid">
-      <div class="field full">
-        <label>Order Name / Description *</label>
-        <input id="o-name" type="text" placeholder="Custom logo hats x10 — Raleigh FC"/>
-      </div>
-      <div class="field full">
-        <label>Customer</label>
-        <select id="o-customer">
-          <option value="">— select customer —</option>
-        </select>
+      <div class="field full"><label>Order Name / Description *</label><input id="o-name" type="text" placeholder="Custom logo hats x10 — Raleigh FC"/></div>
+      <div class="field full"><label>Customer</label>
+        <select id="o-customer"><option value="">— select customer —</option></select>
       </div>
       <div class="sec-label full">Order details</div>
       <div class="field">
@@ -638,26 +337,11 @@ tbody td.primary { color: var(--text); font-weight: 500; }
           <option value="other">Other</option>
         </select>
       </div>
-      <div class="field">
-        <label>Garment Type</label>
-        <input id="o-garment" type="text" placeholder="Hat, shirt, jacket..."/>
-      </div>
-      <div class="field">
-        <label>Quantity</label>
-        <input id="o-qty" type="number" min="1" value="1"/>
-      </div>
-      <div class="field">
-        <label>Total Amount ($)</label>
-        <input id="o-amount" type="number" min="0" step="0.01" placeholder="0.00"/>
-      </div>
-      <div class="field">
-        <label>Order Date</label>
-        <input id="o-date" type="date"/>
-      </div>
-      <div class="field">
-        <label>Due Date</label>
-        <input id="o-due" type="date"/>
-      </div>
+      <div class="field"><label>Garment Type</label><input id="o-garment" type="text" placeholder="Hat, shirt, jacket..."/></div>
+      <div class="field"><label>Quantity</label><input id="o-qty" type="number" min="1" value="1"/></div>
+      <div class="field"><label>Total Amount ($)</label><input id="o-amount" type="number" min="0" step="0.01" placeholder="0.00"/></div>
+      <div class="field"><label>Order Date</label><input id="o-date" type="date"/></div>
+      <div class="field"><label>Due Date</label><input id="o-due" type="date"/></div>
       <div class="field">
         <label>Status</label>
         <select id="o-status">
@@ -688,14 +372,8 @@ tbody td.primary { color: var(--text); font-weight: 500; }
           <option value="other">Other</option>
         </select>
       </div>
-      <div class="field">
-        <label>Files / Design URL</label>
-        <input id="o-files" type="url" placeholder="https://drive.google.com/..."/>
-      </div>
-      <div class="field full">
-        <label>Notes</label>
-        <textarea id="o-notes" placeholder="Design details, thread colors, placement, special instructions..."></textarea>
-      </div>
+      <div class="field"><label>Files / Design URL</label><input id="o-files" type="url" placeholder="https://drive.google.com/..."/></div>
+      <div class="field full"><label>Notes</label><textarea id="o-notes" placeholder="Design details, thread colors, placement, special instructions..."></textarea></div>
     </div>
     <div class="modal-actions">
       <button class="btn-delete" id="o-delete-btn" style="display:none;" onclick="deleteOrder()">Delete</button>
@@ -706,7 +384,6 @@ tbody td.primary { color: var(--text); font-weight: 500; }
 </div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────
 let SUPABASE_URL = '';
 let SUPABASE_KEY = '';
 
@@ -716,18 +393,14 @@ function saveConfig() {
   if (!url || !key) { alert('Please enter both your Supabase URL and anon key.'); return; }
   localStorage.setItem('ttc_sb_url', url);
   localStorage.setItem('ttc_sb_key', key);
-  SUPABASE_URL = url;
-  SUPABASE_KEY = key;
+  SUPABASE_URL = url; SUPABASE_KEY = key;
   initApp();
 }
-
 function resetConfig() {
-  localStorage.removeItem('ttc_sb_url');
-  localStorage.removeItem('ttc_sb_key');
+  localStorage.removeItem('ttc_sb_url'); localStorage.removeItem('ttc_sb_key');
   document.getElementById('app').style.display = 'none';
   document.getElementById('config-screen').style.display = 'flex';
 }
-
 function loadConfig() {
   SUPABASE_URL = localStorage.getItem('ttc_sb_url') || '';
   SUPABASE_KEY = localStorage.getItem('ttc_sb_key') || '';
@@ -738,76 +411,51 @@ function loadConfig() {
   }
 }
 
-// ── API ───────────────────────────────────────────────────
 async function sbFetch(path, options = {}) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': options.prefer || 'return=representation',
-      ...options.headers
-    },
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': options.prefer || 'return=representation', ...options.headers },
     ...options
   });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `HTTP ${res.status}`);
-  }
+  if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.message || `HTTP ${res.status}`); }
   const text = await res.text();
   return text ? JSON.parse(text) : [];
 }
 
 const api = {
   getCustomers: () => sbFetch('customers?select=*&order=name.asc'),
-  getCustomer: (id) => sbFetch(`customers?id=eq.${id}&select=*`),
-  createCustomer: (data) => sbFetch('customers', { method: 'POST', body: JSON.stringify(data) }),
-  updateCustomer: (id, data) => sbFetch(`customers?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+  createCustomer: (d) => sbFetch('customers', { method: 'POST', body: JSON.stringify(d) }),
+  updateCustomer: (id, d) => sbFetch(`customers?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(d) }),
   deleteCustomer: (id) => sbFetch(`customers?id=eq.${id}`, { method: 'DELETE', prefer: 'return=minimal' }),
   getOrders: () => sbFetch('orders?select=*&order=created_at.desc'),
-  getOrdersByCustomer: (cid) => sbFetch(`orders?customer_id=eq.${cid}&select=*&order=created_at.desc`),
-  createOrder: (data) => sbFetch('orders', { method: 'POST', body: JSON.stringify(data) }),
-  updateOrder: (id, data) => sbFetch(`orders?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+  createOrder: (d) => sbFetch('orders', { method: 'POST', body: JSON.stringify(d) }),
+  updateOrder: (id, d) => sbFetch(`orders?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(d) }),
   deleteOrder: (id) => sbFetch(`orders?id=eq.${id}`, { method: 'DELETE', prefer: 'return=minimal' }),
 };
 
-// ── STATE ─────────────────────────────────────────────────
-let customers = [];
-let orders = [];
-let editingCustomerId = null;
-let editingOrderId = null;
-let currentCustomerDetailId = null;
+let customers = [], orders = [];
+let editingCustomerId = null, editingOrderId = null, currentCustomerDetailId = null;
 
-// ── INIT ──────────────────────────────────────────────────
 async function initApp() {
   document.getElementById('config-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   await loadAll();
 }
-
 async function loadAll() {
   try {
     [customers, orders] = await Promise.all([api.getCustomers(), api.getOrders()]);
-    renderCustomers();
-    renderOrders();
-    renderCustomerStats();
-    renderOrderStats();
-    populateCustomerDropdown();
-  } catch (e) {
-    alert('Could not connect to Supabase. Check your credentials in Settings.\n\n' + e.message);
-  }
+    renderCustomers(); renderOrders(); renderCustomerStats(); renderOrderStats(); populateCustomerDropdown();
+  } catch (e) { alert('Could not connect to Supabase. Check your credentials.\n\n' + e.message); }
 }
 
-// ── TABS ──────────────────────────────────────────────────
 function showTab(tab) {
   document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', ['customers','orders'][i] === tab));
   document.getElementById('panel-customers').classList.toggle('active', tab === 'customers');
   document.getElementById('panel-orders').classList.toggle('active', tab === 'orders');
 }
 
-// ── HELPERS ───────────────────────────────────────────────
 function fmt(n) { return '$' + (parseFloat(n)||0).toFixed(2); }
 function fmtDate(d) { if (!d) return '—'; const dt = new Date(d+'T00:00:00'); return dt.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); }
+function fmtDateTime(d) { if (!d) return '—'; return new Date(d).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); }
 
 function statusBadge(s) {
   const map = { inquiry:'blue', confirmed:'amber', 'in-progress':'amber', complete:'green', cancelled:'gray' };
@@ -818,68 +466,134 @@ function payBadge(s) {
   const label = { paid:'Paid', deposit:'Deposit', owes:'Owes', free:'Free' };
   return `<span class="badge ${map[s]||'gray'}">${label[s]||s||'—'}</span>`;
 }
-function sourceBadge(s) {
-  return s ? `<span class="badge gray">${s}</span>` : '—';
-}
-
+function sourceBadge(s) { return s ? `<span class="badge gray">${s}</span>` : '—'; }
 function customerName(cid, manual) {
   if (cid) { const c = customers.find(x => x.id === cid); if (c) return c.name; }
   return manual || '—';
 }
-
 function getCustomerStats(cid) {
   const co = orders.filter(o => o.customer_id === cid);
   const total = co.reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
-  const outstanding = co.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit')
-                        .reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
+  const outstanding = co.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit').reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
   return { count: co.length, total, outstanding };
 }
 
-// ── CUSTOMERS ─────────────────────────────────────────────
+// ── INLINE EDITING ────────────────────────────────────────
+async function inlineSave(table, id, field, value) {
+  try {
+    if (table === 'orders') {
+      await api.updateOrder(id, { [field]: value });
+      const o = orders.find(x => x.id === id);
+      if (o) o[field] = value;
+      renderOrderStats();
+      if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId);
+    } else {
+      await api.updateCustomer(id, { [field]: value });
+      const c = customers.find(x => x.id === id);
+      if (c) c[field] = value;
+      renderCustomerStats();
+    }
+  } catch (e) { alert('Save failed: ' + e.message); await loadAll(); }
+}
+
+function makeEditable(td, table, id, field, currentVal, type = 'text') {
+  td.innerHTML = '';
+  if (type === 'select') {
+    const options = {
+      status: ['inquiry','confirmed','in-progress','complete','cancelled'],
+      payment_status: ['owes','deposit','paid','free'],
+      order_type: ['embroidery','dtf','combo','other'],
+      source: ['facebook','text','etsy','order-form','in-person','other'],
+      preferred_contact: ['facebook','text','email','phone','instagram'],
+    };
+    const sel = document.createElement('select');
+    sel.className = 'inline-select';
+    (options[field] || []).forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt; o.textContent = opt;
+      if (opt === currentVal) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.onchange = async () => {
+      const val = sel.value;
+      await inlineSave(table, id, field, val);
+      if (table === 'orders') renderOrderRows(orders);
+      else renderCustomerRows(customers);
+    };
+    sel.onblur = () => { if (table === 'orders') renderOrderRows(orders); else renderCustomerRows(customers); };
+    td.appendChild(sel);
+    sel.focus();
+  } else {
+    const inp = document.createElement('input');
+    inp.className = 'inline-input';
+    inp.type = type === 'number' ? 'number' : type === 'date' ? 'date' : 'text';
+    inp.value = currentVal || '';
+    inp.onkeydown = async (e) => {
+      if (e.key === 'Enter') {
+        const val = type === 'number' ? parseFloat(inp.value) || 0 : inp.value.trim();
+        await inlineSave(table, id, field, val || null);
+        if (table === 'orders') renderOrderRows(orders);
+        else renderCustomerRows(customers);
+      }
+      if (e.key === 'Escape') {
+        if (table === 'orders') renderOrderRows(orders);
+        else renderCustomerRows(customers);
+      }
+    };
+    inp.onblur = async () => {
+      const val = type === 'number' ? parseFloat(inp.value) || 0 : inp.value.trim();
+      await inlineSave(table, id, field, val || null);
+      if (table === 'orders') renderOrderRows(orders);
+      else renderCustomerRows(customers);
+    };
+    td.appendChild(inp);
+    inp.focus(); inp.select();
+  }
+}
+
+function editCell(e, table, id, field, currentVal, type = 'text') {
+  e.stopPropagation();
+  const td = e.currentTarget;
+  makeEditable(td, table, id, field, currentVal, type);
+}
+
+// ── CUSTOMER STATS & RENDER ───────────────────────────────
 function renderCustomerStats() {
-  const totalCustomers = customers.length;
   const withDiscount = customers.filter(c => c.discount_pct > 0).length;
-  const allOutstanding = orders.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit')
-                               .reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
+  const allOutstanding = orders.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit').reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
   const fbCustomers = customers.filter(c => c.source === 'facebook').length;
   document.getElementById('customer-stats').innerHTML = `
-    <div class="stat-card"><div class="val">${totalCustomers}</div><div class="lbl">Total Customers</div></div>
+    <div class="stat-card"><div class="val">${customers.length}</div><div class="lbl">Total Customers</div></div>
     <div class="stat-card"><div class="val">${fbCustomers}</div><div class="lbl">From Facebook</div></div>
     <div class="stat-card"><div class="val">${withDiscount}</div><div class="lbl">Have Discounts</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--amber)">${fmt(allOutstanding)}</div><div class="lbl">Outstanding Balance</div></div>
-  `;
+    <div class="stat-card"><div class="val" style="color:var(--amber)">${fmt(allOutstanding)}</div><div class="lbl">Outstanding Balance</div></div>`;
 }
 
 function filterCustomers() {
   const q = document.getElementById('customer-search').value.toLowerCase();
   const src = document.getElementById('customer-source-filter').value;
-  const filtered = customers.filter(c => {
-    const matchQ = !q || c.name?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q) || c.phone?.includes(q);
-    const matchSrc = !src || c.source === src;
-    return matchQ && matchSrc;
-  });
-  renderCustomerRows(filtered);
+  renderCustomerRows(customers.filter(c => {
+    const mq = !q || c.name?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q) || c.phone?.includes(q);
+    return mq && (!src || c.source === src);
+  }));
 }
-
 function renderCustomers() { renderCustomerRows(customers); }
 
 function renderCustomerRows(list) {
   const tbody = document.getElementById('customers-tbody');
-  if (!list.length) {
-    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><strong>No customers yet</strong><p>Add your first customer or wait for an order form submission.</p></div></td></tr>`;
-    return;
-  }
+  if (!list.length) { tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><strong>No customers yet</strong><p>Add your first customer or wait for an order form submission.</p></div></td></tr>`; return; }
   tbody.innerHTML = list.map(c => {
     const stats = getCustomerStats(c.id);
     const contact = c.email || c.phone || '—';
-    return `<tr onclick="showCustomerDetail('${c.id}')">
-      <td class="primary">${c.name}</td>
-      <td>${contact}</td>
-      <td>${sourceBadge(c.source)}</td>
-      <td>${c.discount_pct > 0 ? `<span class="badge green">${c.discount_pct}% off</span>` : '—'}</td>
-      <td>${stats.count}</td>
+    return `<tr>
+      <td class="primary"><span class="editable" onclick="editCell(event,'customers','${c.id}','name','${(c.name||'').replace(/'/g,"\\'")}','text')">${c.name}</span></td>
+      <td><span class="editable" onclick="editCell(event,'customers','${c.id}','email','${(c.email||'').replace(/'/g,"\\'")}','text')">${contact}</span></td>
+      <td onclick="editCell(event,'customers','${c.id}','source','${c.source||''}','select')">${sourceBadge(c.source)}</td>
+      <td><span class="editable" onclick="editCell(event,'customers','${c.id}','discount_pct',${c.discount_pct||0},'number')">${c.discount_pct > 0 ? `<span class="badge green">${c.discount_pct}% off</span>` : '—'}</span></td>
+      <td style="cursor:pointer;" onclick="showCustomerDetail('${c.id}')">${stats.count}</td>
       <td>${fmt(stats.total)}</td>
       <td>${stats.outstanding > 0 ? `<span class="badge red">${fmt(stats.outstanding)}</span>` : '<span class="badge green">Clear</span>'}</td>
+      <td><button class="row-delete" onclick="hardDeleteCustomer(event,'${c.id}')">Delete</button></td>
     </tr>`;
   }).join('');
 }
@@ -891,19 +605,16 @@ async function showCustomerDetail(id) {
   if (!c) return;
   const stats = getCustomerStats(id);
   const cOrders = orders.filter(o => o.customer_id === id);
-
   document.getElementById('customers-list-view').style.display = 'none';
   const dv = document.getElementById('customer-detail-view');
   dv.style.display = 'block';
-
   dv.innerHTML = `
     <div class="detail-back" onclick="backToCustomers()">← Back to customers</div>
     <div class="detail-header">
       <div>
         <div class="detail-name">${c.name}</div>
         <div class="detail-meta">
-          ${c.email ? `${c.email}<br>` : ''}
-          ${c.phone ? `${c.phone}<br>` : ''}
+          ${c.email ? `${c.email}<br>` : ''}${c.phone ? `${c.phone}<br>` : ''}
           ${c.preferred_contact ? `Prefers: ${c.preferred_contact}<br>` : ''}
           ${c.source ? `Source: ${c.source}<br>` : ''}
           ${c.discount_pct > 0 ? `<span class="badge green" style="margin-top:4px;">${c.discount_pct}% discount</span>` : ''}
@@ -925,25 +636,25 @@ async function showCustomerDetail(id) {
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Order ID</th><th>Description</th><th>Type</th><th>Qty</th><th>Amount</th><th>Payment</th><th>Status</th><th>Due</th></tr></thead>
+        <thead><tr><th>Order ID</th><th>Description</th><th>Type</th><th>Qty</th><th>Amount</th><th>Payment</th><th>Status</th><th>Due</th><th>Submitted</th><th></th></tr></thead>
         <tbody>
           ${cOrders.length ? cOrders.map(o => `
-            <tr onclick="openOrderModal('${o.id}')">
+            <tr>
               <td class="primary">${o.order_id||'—'}</td>
-              <td>${o.order_name||'—'}</td>
-              <td>${o.order_type||'—'}</td>
-              <td>${o.quantity||1}</td>
-              <td>${fmt(o.total_amount)}</td>
-              <td>${payBadge(o.payment_status)}</td>
-              <td>${statusBadge(o.status)}</td>
-              <td>${fmtDate(o.due_date)}</td>
+              <td><span class="editable" onclick="editCell(event,'orders','${o.id}','order_name','${(o.order_name||'').replace(/'/g,"\\'")}','text')">${o.order_name||'—'}</span></td>
+              <td onclick="editCell(event,'orders','${o.id}','order_type','${o.order_type||''}','select')">${o.order_type||'—'}</td>
+              <td><span class="editable" onclick="editCell(event,'orders','${o.id}','quantity',${o.quantity||1},'number')">${o.quantity||1}</span></td>
+              <td><span class="editable" onclick="editCell(event,'orders','${o.id}','total_amount',${o.total_amount||0},'number')">${fmt(o.total_amount)}</span></td>
+              <td onclick="editCell(event,'orders','${o.id}','payment_status','${o.payment_status||''}','select')">${payBadge(o.payment_status)}</td>
+              <td onclick="editCell(event,'orders','${o.id}','status','${o.status||''}','select')">${statusBadge(o.status)}</td>
+              <td><span class="editable" onclick="editCell(event,'orders','${o.id}','due_date','${o.due_date||''}','date')">${fmtDate(o.due_date)}</span></td>
+              <td>${fmtDateTime(o.created_at)}</td>
+              <td><button class="row-delete" onclick="hardDeleteOrder(event,'${o.id}')">Delete</button></td>
             </tr>`).join('') :
-            `<tr><td colspan="8"><div class="empty-state"><strong>No orders yet</strong><p>Add the first order for this customer.</p></div></td></tr>`
-          }
+            `<tr><td colspan="10"><div class="empty-state"><strong>No orders yet</strong></div></td></tr>`}
         </tbody>
       </table>
-    </div>
-  `;
+    </div>`;
 }
 
 function backToCustomers() {
@@ -952,57 +663,70 @@ function backToCustomers() {
   currentCustomerDetailId = null;
 }
 
-// ── ORDERS ────────────────────────────────────────────────
+// ── ORDERS RENDER ─────────────────────────────────────────
 function renderOrderStats() {
   const inquiries = orders.filter(o => o.status === 'inquiry').length;
   const inProgress = orders.filter(o => o.status === 'in-progress' || o.status === 'confirmed').length;
-  const owes = orders.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit')
-                     .reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
-  const revenue = orders.filter(o => o.payment_status === 'paid')
-                        .reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
+  const owes = orders.filter(o => o.payment_status === 'owes' || o.payment_status === 'deposit').reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
+  const revenue = orders.filter(o => o.payment_status === 'paid').reduce((s, o) => s + (parseFloat(o.total_amount)||0), 0);
   document.getElementById('order-stats').innerHTML = `
     <div class="stat-card"><div class="val" style="color:var(--blue)">${inquiries}</div><div class="lbl">Open Inquiries</div></div>
     <div class="stat-card"><div class="val" style="color:var(--amber)">${inProgress}</div><div class="lbl">In Progress</div></div>
     <div class="stat-card"><div class="val" style="color:var(--red)">${fmt(owes)}</div><div class="lbl">Outstanding</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--green)">${fmt(revenue)}</div><div class="lbl">Collected Revenue</div></div>
-  `;
+    <div class="stat-card"><div class="val" style="color:var(--green)">${fmt(revenue)}</div><div class="lbl">Collected Revenue</div></div>`;
 }
 
 function filterOrders() {
   const q = document.getElementById('order-search').value.toLowerCase();
   const status = document.getElementById('order-status-filter').value;
   const payment = document.getElementById('order-payment-filter').value;
-  const filtered = orders.filter(o => {
+  renderOrderRows(orders.filter(o => {
     const name = customerName(o.customer_id, o.customer_name_manual).toLowerCase();
-    const matchQ = !q || o.order_name?.toLowerCase().includes(q) || o.order_id?.toLowerCase().includes(q) || name.includes(q);
-    const matchS = !status || o.status === status;
-    const matchP = !payment || o.payment_status === payment;
-    return matchQ && matchS && matchP;
-  });
-  renderOrderRows(filtered);
+    const mq = !q || o.order_name?.toLowerCase().includes(q) || o.order_id?.toLowerCase().includes(q) || name.includes(q);
+    return mq && (!status || o.status === status) && (!payment || o.payment_status === payment);
+  }));
 }
-
 function renderOrders() { renderOrderRows(orders); }
 
 function renderOrderRows(list) {
   const tbody = document.getElementById('orders-tbody');
-  if (!list.length) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><strong>No orders yet</strong><p>Add your first order or share your order form link.</p></div></td></tr>`;
-    return;
-  }
+  if (!list.length) { tbody.innerHTML = `<tr><td colspan="12"><div class="empty-state"><strong>No orders yet</strong><p>Add your first order or share your order form link.</p></div></td></tr>`; return; }
   tbody.innerHTML = list.map(o => `
-    <tr onclick="openOrderModal('${o.id}')">
+    <tr>
       <td class="primary">${o.order_id||'—'}</td>
       <td>${customerName(o.customer_id, o.customer_name_manual)}</td>
-      <td>${o.order_type||'—'}</td>
-      <td>${o.garment_type||'—'}</td>
-      <td>${o.quantity||1}</td>
-      <td>${fmt(o.total_amount)}</td>
-      <td>${payBadge(o.payment_status)}</td>
-      <td>${statusBadge(o.status)}</td>
-      <td>${fmtDate(o.due_date)}</td>
-    </tr>
-  `).join('');
+      <td><span class="editable" onclick="editCell(event,'orders','${o.id}','order_name','${(o.order_name||'').replace(/'/g,"\\'")}','text')">${o.order_name||'—'}</span></td>
+      <td onclick="editCell(event,'orders','${o.id}','order_type','${o.order_type||''}','select')">${o.order_type||'—'}</td>
+      <td><span class="editable" onclick="editCell(event,'orders','${o.id}','garment_type','${(o.garment_type||'').replace(/'/g,"\\'")}','text')">${o.garment_type||'—'}</span></td>
+      <td><span class="editable" onclick="editCell(event,'orders','${o.id}','quantity',${o.quantity||1},'number')">${o.quantity||1}</span></td>
+      <td><span class="editable" onclick="editCell(event,'orders','${o.id}','total_amount',${o.total_amount||0},'number')">${fmt(o.total_amount)}</span></td>
+      <td onclick="editCell(event,'orders','${o.id}','payment_status','${o.payment_status||''}','select')">${payBadge(o.payment_status)}</td>
+      <td onclick="editCell(event,'orders','${o.id}','status','${o.status||''}','select')">${statusBadge(o.status)}</td>
+      <td><span class="editable" onclick="editCell(event,'orders','${o.id}','due_date','${o.due_date||''}','date')">${fmtDate(o.due_date)}</span></td>
+      <td>${fmtDateTime(o.created_at)}</td>
+      <td><button class="row-delete" onclick="hardDeleteOrder(event,'${o.id}')">Delete</button></td>
+    </tr>`).join('');
+}
+
+// ── HARD DELETE ───────────────────────────────────────────
+async function hardDeleteOrder(e, id) {
+  e.stopPropagation();
+  if (!confirm('Permanently delete this order? This cannot be undone.')) return;
+  try {
+    await api.deleteOrder(id);
+    orders = orders.filter(o => o.id !== id);
+    renderOrders(); renderOrderStats(); renderCustomerStats();
+    if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId);
+  } catch (err) { alert(err.message); }
+}
+async function hardDeleteCustomer(e, id) {
+  e.stopPropagation();
+  if (!confirm('Permanently delete this customer? This cannot be undone.')) return;
+  try {
+    await api.deleteCustomer(id);
+    customers = customers.filter(c => c.id !== id);
+    renderCustomers(); renderCustomerStats();
+  } catch (err) { alert(err.message); }
 }
 
 // ── CUSTOMER MODAL ────────────────────────────────────────
@@ -1012,7 +736,6 @@ function openCustomerModal(id = null) {
   const isEdit = !!id;
   document.getElementById('customer-modal-title').textContent = isEdit ? 'Edit Customer' : 'Add Customer';
   document.getElementById('c-delete-btn').style.display = isEdit ? 'inline-flex' : 'none';
-
   if (isEdit) {
     const c = customers.find(x => x.id === id);
     document.getElementById('c-name').value = c.name || '';
@@ -1023,73 +746,44 @@ function openCustomerModal(id = null) {
     document.getElementById('c-discount').value = c.discount_pct || 0;
     document.getElementById('c-notes').value = c.notes || '';
   } else {
-    document.getElementById('c-name').value = '';
-    document.getElementById('c-email').value = '';
-    document.getElementById('c-phone').value = '';
+    ['c-name','c-email','c-phone','c-notes'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('c-contact').value = '';
     document.getElementById('c-source').value = '';
     document.getElementById('c-discount').value = 0;
-    document.getElementById('c-notes').value = '';
   }
   document.getElementById('customer-modal').classList.add('open');
 }
-
 async function saveCustomer() {
   const name = document.getElementById('c-name').value.trim();
   if (!name) { document.getElementById('customer-modal-error').innerHTML = '<div class="error-msg">Name is required.</div>'; return; }
-
-  const data = {
-    name,
-    email: document.getElementById('c-email').value.trim() || null,
-    phone: document.getElementById('c-phone').value.trim() || null,
-    preferred_contact: document.getElementById('c-contact').value || null,
-    source: document.getElementById('c-source').value || null,
-    discount_pct: parseFloat(document.getElementById('c-discount').value) || 0,
-    notes: document.getElementById('c-notes').value.trim() || null,
-  };
-
+  const data = { name, email: document.getElementById('c-email').value.trim()||null, phone: document.getElementById('c-phone').value.trim()||null, preferred_contact: document.getElementById('c-contact').value||null, source: document.getElementById('c-source').value||null, discount_pct: parseFloat(document.getElementById('c-discount').value)||0, notes: document.getElementById('c-notes').value.trim()||null };
   try {
-    if (editingCustomerId) {
-      await api.updateCustomer(editingCustomerId, data);
-    } else {
-      await api.createCustomer(data);
-    }
+    if (editingCustomerId) await api.updateCustomer(editingCustomerId, data);
+    else await api.createCustomer(data);
     closeModal('customer-modal');
     await loadAll();
     if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId);
-  } catch (e) {
-    document.getElementById('customer-modal-error').innerHTML = `<div class="error-msg">${e.message}</div>`;
-  }
+  } catch (e) { document.getElementById('customer-modal-error').innerHTML = `<div class="error-msg">${e.message}</div>`; }
 }
-
 async function deleteCustomer() {
-  if (!editingCustomerId) return;
-  if (!confirm('Delete this customer? Their orders will remain but become unlinked.')) return;
-  try {
-    await api.deleteCustomer(editingCustomerId);
-    closeModal('customer-modal');
-    backToCustomers();
-    await loadAll();
-  } catch (e) { alert(e.message); }
+  if (!editingCustomerId || !confirm('Delete this customer? Their orders will remain but become unlinked.')) return;
+  try { await api.deleteCustomer(editingCustomerId); closeModal('customer-modal'); backToCustomers(); await loadAll(); }
+  catch (e) { alert(e.message); }
 }
 
 // ── ORDER MODAL ───────────────────────────────────────────
 function populateCustomerDropdown(selectedId = null) {
   const sel = document.getElementById('o-customer');
   const current = selectedId || sel.value;
-  sel.innerHTML = '<option value="">— select customer —</option>' +
-    customers.map(c => `<option value="${c.id}" ${c.id === current ? 'selected' : ''}>${c.name}</option>`).join('');
+  sel.innerHTML = '<option value="">— select customer —</option>' + customers.map(c => `<option value="${c.id}" ${c.id === current ? 'selected' : ''}>${c.name}</option>`).join('');
 }
-
 function openOrderModal(id = null, presetCustomerId = null) {
   editingOrderId = id;
   document.getElementById('order-modal-error').innerHTML = '';
   const isEdit = !!id;
   document.getElementById('order-modal-title').textContent = isEdit ? 'Edit Order' : 'Add Order';
   document.getElementById('o-delete-btn').style.display = isEdit ? 'inline-flex' : 'none';
-
   const today = new Date().toISOString().split('T')[0];
-
   if (isEdit) {
     const o = orders.find(x => x.id === id);
     document.getElementById('o-name').value = o.order_name || '';
@@ -1118,84 +812,36 @@ function openOrderModal(id = null, presetCustomerId = null) {
     document.getElementById('o-payment').value = 'owes';
     document.getElementById('o-source').value = 'facebook';
     document.getElementById('o-files').value = '';
-    document.getElementById('o-notes').value = '';
-
-    // Auto-apply customer discount if preset
-    if (presetCustomerId) {
-      const c = customers.find(x => x.id === presetCustomerId);
-      if (c && c.discount_pct > 0) {
-        document.getElementById('o-notes').value = `Customer discount: ${c.discount_pct}% applies`;
-      }
-    }
+    document.getElementById('o-notes').value = presetCustomerId ? (() => { const c = customers.find(x => x.id === presetCustomerId); return c && c.discount_pct > 0 ? `Customer discount: ${c.discount_pct}% applies` : ''; })() : '';
   }
   document.getElementById('order-modal').classList.add('open');
 }
-
 async function saveOrder() {
   const name = document.getElementById('o-name').value.trim();
   if (!name) { document.getElementById('order-modal-error').innerHTML = '<div class="error-msg">Order name is required.</div>'; return; }
-
-  const customerId = document.getElementById('o-customer').value || null;
-  const data = {
-    order_name: name,
-    customer_id: customerId,
-    order_type: document.getElementById('o-type').value,
-    garment_type: document.getElementById('o-garment').value.trim() || null,
-    quantity: parseInt(document.getElementById('o-qty').value) || 1,
-    total_amount: parseFloat(document.getElementById('o-amount').value) || 0,
-    order_date: document.getElementById('o-date').value || null,
-    due_date: document.getElementById('o-due').value || null,
-    status: document.getElementById('o-status').value,
-    payment_status: document.getElementById('o-payment').value,
-    source: document.getElementById('o-source').value,
-    files_url: document.getElementById('o-files').value.trim() || null,
-    notes: document.getElementById('o-notes').value.trim() || null,
-  };
-
+  const data = { order_name: name, customer_id: document.getElementById('o-customer').value||null, order_type: document.getElementById('o-type').value, garment_type: document.getElementById('o-garment').value.trim()||null, quantity: parseInt(document.getElementById('o-qty').value)||1, total_amount: parseFloat(document.getElementById('o-amount').value)||0, order_date: document.getElementById('o-date').value||null, due_date: document.getElementById('o-due').value||null, status: document.getElementById('o-status').value, payment_status: document.getElementById('o-payment').value, source: document.getElementById('o-source').value, files_url: document.getElementById('o-files').value.trim()||null, notes: document.getElementById('o-notes').value.trim()||null };
   try {
-    if (editingOrderId) {
-      await api.updateOrder(editingOrderId, data);
-    } else {
-      await api.createOrder(data);
-    }
+    if (editingOrderId) await api.updateOrder(editingOrderId, data);
+    else await api.createOrder(data);
     closeModal('order-modal');
     await loadAll();
     if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId);
-  } catch (e) {
-    document.getElementById('order-modal-error').innerHTML = `<div class="error-msg">${e.message}</div>`;
-  }
+  } catch (e) { document.getElementById('order-modal-error').innerHTML = `<div class="error-msg">${e.message}</div>`; }
 }
-
 async function deleteOrder() {
-  if (!editingOrderId) return;
-  if (!confirm('Delete this order? This cannot be undone.')) return;
-  try {
-    await api.deleteOrder(editingOrderId);
-    closeModal('order-modal');
-    await loadAll();
-    if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId);
-  } catch (e) { alert(e.message); }
+  if (!editingOrderId || !confirm('Delete this order? This cannot be undone.')) return;
+  try { await api.deleteOrder(editingOrderId); closeModal('order-modal'); await loadAll(); if (currentCustomerDetailId) showCustomerDetail(currentCustomerDetailId); }
+  catch (e) { alert(e.message); }
 }
 
-// ── MODAL UTILS ───────────────────────────────────────────
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
-});
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => { m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }); });
 
-// ── EXPORT ────────────────────────────────────────────────
 function exportData() {
-  const data = { exported: new Date().toISOString(), customers, orders };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `ttc-clients-${new Date().toISOString().split('T')[0]}.json`;
-  a.click();
+  const blob = new Blob([JSON.stringify({ exported: new Date().toISOString(), customers, orders }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `ttc-clients-${new Date().toISOString().split('T')[0]}.json`; a.click();
 }
 
-// ── BOOT ──────────────────────────────────────────────────
 loadConfig();
 </script>
 </body>
