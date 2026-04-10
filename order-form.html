@@ -387,7 +387,7 @@ footer p {
       </div>
       <div class="grid-2">
         <div class="field">
-          <label>Email</label>
+          <label>Email <span class="req">*</span></label>
           <input id="f-email" type="email" placeholder="jane@email.com" autocomplete="email"/>
         </div>
         <div class="field">
@@ -493,6 +493,8 @@ async function submitOrder() {
 
   if (!name)      { showError('Name is required.'); return; }
   if (!contact)   { showError('Please select your preferred contact method.'); return; }
+  const email = document.getElementById('f-email').value.trim() || null;
+  if (!email)     { showError('Email is required.'); return; }
   if (!orderName) { showError('Please describe what you need.'); return; }
   if (!type)      { showError('Please select a service type.'); return; }
   if (!qty || parseInt(qty) < 1) { showError('Please enter a quantity.'); return; }
@@ -503,7 +505,6 @@ async function submitOrder() {
   btn.textContent = 'Submitting...';
 
   try {
-    const email = document.getElementById('f-email').value.trim() || null;
     const phone = document.getElementById('f-phone').value.trim() || null;
     let customerId = null;
 
