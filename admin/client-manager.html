@@ -73,6 +73,10 @@ select.filter-select { padding: 9px 12px; border: 1px solid var(--border2); bord
 .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 thead th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); padding: 10px 12px; background: var(--surface2); border-bottom: 1px solid var(--border); white-space: nowrap; }
+thead th.sortable { cursor: pointer; user-select: none; }
+thead th.sortable:hover { color: var(--text); background: var(--accent-soft); }
+thead th.sort-active { color: var(--text); }
+.sort-icon { font-size: 10px; margin-left: 3px; opacity: 0.5; }
 tbody tr { border-bottom: 1px solid var(--border); }
 tbody tr:last-child { border-bottom: none; }
 tbody td { padding: 8px 12px; color: var(--text2); vertical-align: middle; }
@@ -207,13 +211,13 @@ tbody tr:hover .row-delete { opacity: 1; }
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th class="sortable" onclick="sortCustomers('name')">Name <span class="sort-icon" id="csort-name"></span></th>
               <th>Contact</th>
-              <th>Source</th>
-              <th>Discount</th>
-              <th>Orders</th>
-              <th>Total Spent</th>
-              <th>Outstanding</th>
+              <th class="sortable" onclick="sortCustomers('source')">Source <span class="sort-icon" id="csort-source"></span></th>
+              <th class="sortable" onclick="sortCustomers('discount_pct')">Discount <span class="sort-icon" id="csort-discount_pct"></span></th>
+              <th class="sortable" onclick="sortCustomers('order_count')">Orders <span class="sort-icon" id="csort-order_count"></span></th>
+              <th class="sortable" onclick="sortCustomers('total_spent')">Total Spent <span class="sort-icon" id="csort-total_spent"></span></th>
+              <th class="sortable" onclick="sortCustomers('outstanding')">Outstanding <span class="sort-icon" id="csort-outstanding"></span></th>
               <th></th>
             </tr>
           </thead>
@@ -248,17 +252,17 @@ tbody tr:hover .row-delete { opacity: 1; }
       <table>
         <thead>
           <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Description</th>
-            <th>Type</th>
+            <th class="sortable" onclick="sortOrders('order_id')">Order ID <span class="sort-icon" id="osort-order_id"></span></th>
+            <th class="sortable" onclick="sortOrders('customer')">Customer <span class="sort-icon" id="osort-customer"></span></th>
+            <th class="sortable" onclick="sortOrders('order_name')">Description <span class="sort-icon" id="osort-order_name"></span></th>
+            <th class="sortable" onclick="sortOrders('order_type')">Type <span class="sort-icon" id="osort-order_type"></span></th>
             <th>Garment</th>
-            <th>Qty</th>
-            <th>Amount</th>
-            <th>Payment</th>
-            <th>Status</th>
-            <th>Due</th>
-            <th>Submitted</th>
+            <th class="sortable" onclick="sortOrders('quantity')">Qty <span class="sort-icon" id="osort-quantity"></span></th>
+            <th class="sortable" onclick="sortOrders('total_amount')">Amount <span class="sort-icon" id="osort-total_amount"></span></th>
+            <th class="sortable" onclick="sortOrders('payment_status')">Payment <span class="sort-icon" id="osort-payment_status"></span></th>
+            <th class="sortable" onclick="sortOrders('status')">Status <span class="sort-icon" id="osort-status"></span></th>
+            <th class="sortable" onclick="sortOrders('due_date')">Due <span class="sort-icon" id="osort-due_date"></span></th>
+            <th class="sortable" onclick="sortOrders('created_at')">Submitted <span class="sort-icon" id="osort-created_at"></span></th>
             <th></th>
           </tr>
         </thead>
@@ -478,7 +482,55 @@ function getCustomerStats(cid) {
   return { count: co.length, total, outstanding };
 }
 
-// ── INLINE EDITING ────────────────────────────────────────
+// ── SORT ─────────────────────────────────────────────────
+let customerSort = { field: 'name', dir: 'asc' };
+let orderSort    = { field: 'created_at', dir: 'desc' };
+
+function sortCustomers(field) {
+  if (customerSort.field === field) customerSort.dir = customerSort.dir === 'asc' ? 'desc' : 'asc';
+  else { customerSort.field = field; customerSort.dir = 'asc'; }
+  updateSortIcons('c', customerSort, ['name','source','discount_pct','order_count','total_spent','outstanding']);
+  filterCustomers();
+}
+function sortOrders(field) {
+  if (orderSort.field === field) orderSort.dir = orderSort.dir === 'asc' ? 'desc' : 'asc';
+  else { orderSort.field = field; orderSort.dir = 'asc'; }
+  updateSortIcons('o', orderSort, ['order_id','customer','order_name','order_type','quantity','total_amount','payment_status','status','due_date','created_at']);
+  filterOrders();
+}
+function updateSortIcons(prefix, sort, fields) {
+  fields.forEach(f => {
+    const el = document.getElementById(`${prefix}sort-${f}`);
+    if (!el) return;
+    el.textContent = sort.field === f ? (sort.dir === 'asc' ? '↑' : '↓') : '';
+    el.closest('th').classList.toggle('sort-active', sort.field === f);
+  });
+}
+function applySortCustomers(list) {
+  const { field, dir } = customerSort;
+  return [...list].sort((a, b) => {
+    let av, bv;
+    if (field === 'order_count')  { av = getCustomerStats(a.id).count;       bv = getCustomerStats(b.id).count; }
+    else if (field === 'total_spent')  { av = getCustomerStats(a.id).total;  bv = getCustomerStats(b.id).total; }
+    else if (field === 'outstanding')  { av = getCustomerStats(a.id).outstanding; bv = getCustomerStats(b.id).outstanding; }
+    else { av = (a[field] || '').toString().toLowerCase(); bv = (b[field] || '').toString().toLowerCase(); }
+    if (av < bv) return dir === 'asc' ? -1 : 1;
+    if (av > bv) return dir === 'asc' ? 1 : -1;
+    return 0;
+  });
+}
+function applySortOrders(list) {
+  const { field, dir } = orderSort;
+  return [...list].sort((a, b) => {
+    let av, bv;
+    if (field === 'customer') { av = customerName(a.customer_id, a.customer_name_manual).toLowerCase(); bv = customerName(b.customer_id, b.customer_name_manual).toLowerCase(); }
+    else if (field === 'total_amount' || field === 'quantity') { av = parseFloat(a[field])||0; bv = parseFloat(b[field])||0; }
+    else { av = (a[field] || '').toString().toLowerCase(); bv = (b[field] || '').toString().toLowerCase(); }
+    if (av < bv) return dir === 'asc' ? -1 : 1;
+    if (av > bv) return dir === 'asc' ? 1 : -1;
+    return 0;
+  });
+}
 async function inlineSave(table, id, field, value) {
   try {
     if (table === 'orders') {
@@ -520,7 +572,6 @@ function makeEditable(td, table, id, field, currentVal, type = 'text') {
       if (table === 'orders') renderOrderRows(orders);
       else renderCustomerRows(customers);
     };
-    sel.onblur = () => { if (table === 'orders') renderOrderRows(orders); else renderCustomerRows(customers); };
     td.appendChild(sel);
     sel.focus();
   } else {
@@ -572,12 +623,13 @@ function renderCustomerStats() {
 function filterCustomers() {
   const q = document.getElementById('customer-search').value.toLowerCase();
   const src = document.getElementById('customer-source-filter').value;
-  renderCustomerRows(customers.filter(c => {
+  const filtered = customers.filter(c => {
     const mq = !q || c.name?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q) || c.phone?.includes(q);
     return mq && (!src || c.source === src);
-  }));
+  });
+  renderCustomerRows(applySortCustomers(filtered));
 }
-function renderCustomers() { renderCustomerRows(customers); }
+function renderCustomers() { renderCustomerRows(applySortCustomers(customers)); }
 
 function renderCustomerRows(list) {
   const tbody = document.getElementById('customers-tbody');
@@ -680,13 +732,14 @@ function filterOrders() {
   const q = document.getElementById('order-search').value.toLowerCase();
   const status = document.getElementById('order-status-filter').value;
   const payment = document.getElementById('order-payment-filter').value;
-  renderOrderRows(orders.filter(o => {
+  const filtered = orders.filter(o => {
     const name = customerName(o.customer_id, o.customer_name_manual).toLowerCase();
     const mq = !q || o.order_name?.toLowerCase().includes(q) || o.order_id?.toLowerCase().includes(q) || name.includes(q);
     return mq && (!status || o.status === status) && (!payment || o.payment_status === payment);
-  }));
+  });
+  renderOrderRows(applySortOrders(filtered));
 }
-function renderOrders() { renderOrderRows(orders); }
+function renderOrders() { renderOrderRows(applySortOrders(orders)); }
 
 function renderOrderRows(list) {
   const tbody = document.getElementById('orders-tbody');
