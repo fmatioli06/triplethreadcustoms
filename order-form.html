@@ -29,7 +29,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
+  background: var(--off-white);
   color: var(--charcoal);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -37,13 +37,13 @@ body {
 
 /* ── NAV ── */
 nav {
-  background: var(--charcoal);
+  background: var(--off-white);
   padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #D8D6D2;
 }
 .nav-logo {
   display: flex;
@@ -60,44 +60,45 @@ nav {
   height: 2px;
   border-radius: 100px;
 }
-.nav-bar-1 { background: #DDDBD7; width: 28px; }
+.nav-bar-1 { background: var(--charcoal); width: 28px; }
 .nav-bar-2 { background: var(--gold); width: 20px; }
-.nav-bar-3 { background: #DDDBD7; width: 13px; }
+.nav-bar-3 { background: var(--charcoal); width: 13px; }
 .nav-wordmark {
   font-family: 'Oswald', sans-serif;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 1px;
-  color: #F0EFEC;
+  color: var(--charcoal);
   text-transform: uppercase;
   line-height: 1;
 }
-.nav-sep { width: 1px; height: 20px; background: #333; }
+.nav-sep { width: 1px; height: 20px; background: #D0CEC9; }
 .nav-sub {
   font-family: 'DM Sans', sans-serif;
   font-size: 9px;
   font-weight: 300;
   letter-spacing: 4px;
-  color: var(--light-gray);
+  color: var(--mid-gray);
   text-transform: uppercase;
 }
 .nav-link {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--light-gray);
+  color: var(--warm-gray);
   text-decoration: none;
   transition: color 0.15s;
 }
-.nav-link:hover { color: #F0EFEC; }
+.nav-link:hover { color: var(--charcoal); }
 
 /* ── PAGE ── */
 .page {
   max-width: 600px;
   margin: 0 auto;
   padding: 48px 20px 80px;
+  background: var(--off-white);
 }
 
 /* ── HEADER ── */
@@ -323,6 +324,7 @@ footer {
   border-top: 1px solid #D0CEC9;
   padding: 24px 20px;
   text-align: center;
+  background: var(--off-white);
 }
 footer p {
   font-size: 10px;
