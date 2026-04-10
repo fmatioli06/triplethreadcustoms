@@ -549,6 +549,8 @@ async function inlineSave(table, id, field, value) {
 }
 
 function makeEditable(td, table, id, field, currentVal, type = 'text') {
+  if (td.dataset.editing === '1') return;
+  td.dataset.editing = '1';
   td.innerHTML = '';
   if (type === 'select') {
     const options = {
@@ -560,43 +562,59 @@ function makeEditable(td, table, id, field, currentVal, type = 'text') {
     };
     const sel = document.createElement('select');
     sel.className = 'inline-select';
+    sel.size = 1;
     (options[field] || []).forEach(opt => {
       const o = document.createElement('option');
       o.value = opt; o.textContent = opt;
       if (opt === currentVal) o.selected = true;
       sel.appendChild(o);
     });
+    let saved = false;
     sel.onchange = async () => {
+      if (saved) return;
+      saved = true;
       const val = sel.value;
+      delete td.dataset.editing;
       await inlineSave(table, id, field, val);
-      if (table === 'orders') renderOrderRows(orders);
-      else renderCustomerRows(customers);
+      if (table === 'orders') renderOrderRows(applySortOrders(orders));
+      else renderCustomerRows(applySortCustomers(customers));
     };
+    sel.onkeydown = (e) => {
+      if (e.key === 'Escape') {
+        delete td.dataset.editing;
+        if (table === 'orders') renderOrderRows(applySortOrders(orders));
+        else renderCustomerRows(applySortCustomers(customers));
+      }
+    };
+    td.onclick = (e) => e.stopPropagation();
     td.appendChild(sel);
-    sel.focus();
+    setTimeout(() => sel.focus(), 0);
   } else {
     const inp = document.createElement('input');
     inp.className = 'inline-input';
     inp.type = type === 'number' ? 'number' : type === 'date' ? 'date' : 'text';
     inp.value = currentVal || '';
-    inp.onkeydown = async (e) => {
-      if (e.key === 'Enter') {
-        const val = type === 'number' ? parseFloat(inp.value) || 0 : inp.value.trim();
-        await inlineSave(table, id, field, val || null);
-        if (table === 'orders') renderOrderRows(orders);
-        else renderCustomerRows(customers);
-      }
-      if (e.key === 'Escape') {
-        if (table === 'orders') renderOrderRows(orders);
-        else renderCustomerRows(customers);
-      }
-    };
-    inp.onblur = async () => {
+    let saved = false;
+    const doSave = async () => {
+      if (saved) return;
+      saved = true;
       const val = type === 'number' ? parseFloat(inp.value) || 0 : inp.value.trim();
+      delete td.dataset.editing;
       await inlineSave(table, id, field, val || null);
-      if (table === 'orders') renderOrderRows(orders);
-      else renderCustomerRows(customers);
+      if (table === 'orders') renderOrderRows(applySortOrders(orders));
+      else renderCustomerRows(applySortCustomers(customers));
     };
+    inp.onkeydown = async (e) => {
+      if (e.key === 'Enter') doSave();
+      if (e.key === 'Escape') {
+        saved = true;
+        delete td.dataset.editing;
+        if (table === 'orders') renderOrderRows(applySortOrders(orders));
+        else renderCustomerRows(applySortCustomers(customers));
+      }
+    };
+    inp.onblur = doSave;
+    td.onclick = (e) => e.stopPropagation();
     td.appendChild(inp);
     inp.focus(); inp.select();
   }
