@@ -537,15 +537,16 @@ function backToCustomers(){
 
 // ── ORDERS ───────────────────────────────────────────────
 function renderOrderStats(){
+  const thisYear=new Date().getFullYear();
   const inquiries=orders.filter(o=>o.status==='inquiry').length;
   const inProg=orders.filter(o=>o.status==='in-progress'||o.status==='confirmed').length;
   const owes=orders.filter(o=>o.payment_status==='owes'||o.payment_status==='deposit').reduce((s,o)=>s+(parseFloat(o.total_amount)||0),0);
-  const rev=orders.filter(o=>o.payment_status==='paid').reduce((s,o)=>s+(parseFloat(o.total_amount)||0),0);
+  const yearRev=orders.filter(o=>{const d=o.order_date||o.created_at;return d&&new Date(d).getFullYear()===thisYear;}).reduce((s,o)=>s+(parseFloat(o.total_amount)||0),0);
   document.getElementById('order-stats').innerHTML=`
     <div class="stat-card"><div class="val" style="color:var(--blue)">${inquiries}</div><div class="lbl">Open Inquiries</div></div>
     <div class="stat-card"><div class="val" style="color:var(--amber)">${inProg}</div><div class="lbl">In Progress</div></div>
     <div class="stat-card"><div class="val" style="color:var(--red)">${fmt(owes)}</div><div class="lbl">Outstanding</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--green)">${fmt(rev)}</div><div class="lbl">Collected</div></div>`;
+    <div class="stat-card"><div class="val" style="color:var(--green)">${fmtK(yearRev)}</div><div class="lbl">${thisYear} Revenue</div></div>`;
 }
 function filterOrders(){
   const q=document.getElementById('order-search').value.toLowerCase();
@@ -850,7 +851,23 @@ function openDrawer(mode,id,presetCustomerId=null){
       <div class="form-grid">
         <div class="field full"><label>Description *</label><input id="d-oname" type="text" value="${(o.order_name||'').replace(/"/g,'&quot;')}"/></div>
         <div class="field full"><label>Customer</label>
-          <select id="d-ocustomer"><option value="">— select —</option>${custOptions}</select>
+          <div style="display:flex;gap:8px;align-items:flex-start;">
+            <select id="d-ocustomer" style="flex:1;"><option value="">— select —</option>${custOptions}</select>
+            <button type="button" onclick="toggleQuickCustomer()" style="padding:9px 12px;background:var(--accent-soft);border:1px solid var(--border2);border-radius:var(--radius);font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;flex-shrink:0;">+ New</button>
+          </div>
+          <div id="quick-customer-form" style="display:none;margin-top:10px;padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:var(--text3);margin-bottom:10px;">Quick Add Customer</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+              <div class="field"><label>Name *</label><input id="qc-name" type="text" placeholder="Full name"/></div>
+              <div class="field"><label>Phone</label><input id="qc-phone" type="tel" placeholder="(919) 555-0100"/></div>
+              <div class="field"><label>Email</label><input id="qc-email" type="email" placeholder="email@example.com"/></div>
+              <div class="field"><label>Source</label>
+                <select id="qc-source"><option value="facebook">Facebook</option><option value="text">Text</option><option value="in-person">In-person</option><option value="etsy">Etsy</option><option value="other">Other</option></select>
+              </div>
+            </div>
+            <button type="button" onclick="quickCreateCustomer()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;">Create & Select</button>
+            <span id="qc-status" style="font-size:11px;margin-left:10px;color:var(--text3);"></span>
+          </div>
         </div>
         <div class="form-section full">Order details</div>
         <div class="field"><label>Order Type</label>
@@ -879,6 +896,33 @@ function openDrawer(mode,id,presetCustomerId=null){
   }
   document.getElementById('drawer-overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
+}
+
+function toggleQuickCustomer(){
+  const form=document.getElementById('quick-customer-form');
+  if(form)form.style.display=form.style.display==='none'?'block':'none';
+}
+async function quickCreateCustomer(){
+  const name=document.getElementById('qc-name')?.value.trim();
+  const status=document.getElementById('qc-status');
+  if(!name){if(status)status.textContent='Name is required.';return;}
+  if(status)status.textContent='Creating...';
+  try{
+    const data={name,phone:document.getElementById('qc-phone')?.value.trim()||null,email:document.getElementById('qc-email')?.value.trim()||null,source:document.getElementById('qc-source')?.value||null};
+    const result=await api.createCustomer(data);
+    const newCustomer=Array.isArray(result)?result[0]:result;
+    customers.push(newCustomer);
+    customers.sort((a,b)=>a.name.localeCompare(b.name));
+    const sel=document.getElementById('d-ocustomer');
+    if(sel){
+      const opt=document.createElement('option');
+      opt.value=newCustomer.id;opt.textContent=newCustomer.name;opt.selected=true;
+      sel.appendChild(opt);sel.value=newCustomer.id;
+    }
+    if(status)status.textContent='✓ '+name+' created';
+    const form=document.getElementById('quick-customer-form');
+    if(form)form.style.display='none';
+  }catch(e){if(status)status.textContent='Error: '+e.message;}
 }
 function closeDrawer(){
   document.getElementById('drawer-overlay').classList.remove('open');
