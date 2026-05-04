@@ -170,6 +170,98 @@ tbody td.wrap{white-space:normal;max-width:220px;}
   .drawer{width:100vw;}
   .a-kpi-grid{grid-template-columns:1fr;}
 }
+
+/* ── ORDER CARDS ──────────────────────────────── */
+.orders-toolbar{display:flex;align-items:center;gap:8px;padding:14px 24px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.search-wrap{flex:1;min-width:180px;position:relative;}
+.search-wrap::before{content:'';position:absolute;left:10px;top:50%;transform:translateY(-50%);width:13px;height:13px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' stroke='%238B95A5' stroke-width='2'/%3E%3Cpath d='M20 20l-3-3' stroke='%238B95A5' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;}
+.search-inp{width:100%;padding:8px 10px 8px 30px;font-family:'Inter',sans-serif;font-size:13px;color:var(--text);background:var(--accent-soft);border:1px solid var(--border);border-radius:var(--radius);outline:none;transition:border-color .15s;}
+.search-inp:focus{border-color:var(--accent);background:var(--surface);}
+.filters{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding:10px 24px 0;}
+.filters::-webkit-scrollbar{display:none;}
+.fbtn{padding:4px 13px;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.04em;border:1px solid var(--border);border-radius:100px;background:var(--surface);color:var(--text3);cursor:pointer;transition:all .13s;white-space:nowrap;flex-shrink:0;}
+.fbtn:hover{border-color:var(--accent);color:var(--text);}
+.fbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.fbtn.f-emb.active{background:var(--blue);border-color:var(--blue);}
+.fbtn.f-dtf.active{background:#7B4FD9;border-color:#7B4FD9;}
+.summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 24px 0;}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;}
+.sc-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:5px;}
+.sc-val{font-family:'Bebas Neue',sans-serif;font-size:26px;font-weight:700;color:var(--text);line-height:1;}
+.sc-val.red{color:var(--red);}
+.sc-val.amber{color:var(--amber);}
+.inner-tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);}
+.inner-tab{flex:1;text-align:center;padding:10px;background:var(--accent-soft);color:var(--text2);font-family:'Inter',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;border-bottom:2px solid transparent;transition:all .15s;}
+.inner-tab:hover{background:var(--surface);color:var(--text);}
+.inner-tab.active{background:var(--surface);color:var(--text);border-bottom-color:var(--text);}
+.inner-panel{display:none;}
+.inner-panel.active{display:block;}
+.order-list{padding:10px 24px 80px;display:flex;flex-direction:column;gap:6px;}
+.order-empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;}
+.order-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:13px 16px;cursor:pointer;transition:border-color .13s, box-shadow .1s;display:flex;align-items:center;gap:12px;}
+.order-card:hover{border-color:var(--accent);box-shadow:0 2px 10px rgba(17,24,39,0.07);}
+.order-type-badge{width:34px;height:34px;border-radius:var(--radius);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase;}
+.badge-emb{background:#DDEAF7;color:var(--blue);}
+.badge-dtf{background:#EDE8F9;color:#7B4FD9;}
+.badge-combo{background:var(--amber-dim);color:var(--amber);}
+.badge-other{background:var(--accent-soft);color:var(--text3);}
+.order-main{flex:1;min-width:0;}
+.order-customer{font-weight:600;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.order-item{font-size:12px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.order-note-preview{font-size:11px;color:var(--text3);font-style:italic;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.order-meta{display:flex;align-items:center;gap:7px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;}
+.order-total{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--text);letter-spacing:0.04em;}
+.chip{padding:3px 9px;border-radius:100px;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+.chip-inquiry{background:var(--accent-soft);color:var(--text3);}
+.chip-confirmed{background:var(--green-dim);color:var(--green);}
+.chip-in-progress{background:var(--amber-dim);color:var(--amber);}
+.chip-complete{background:var(--accent);color:#fff;}
+.chip-cancelled{background:var(--red-dim);color:var(--red);}
+.chip-pay-owes{background:var(--red-dim);color:var(--red);}
+.chip-pay-deposit{background:var(--amber-dim);color:var(--amber);}
+.chip-pay-paid{background:var(--green-dim);color:var(--green);}
+.chip-pay-free{background:var(--accent-soft);color:var(--text3);}
+.order-due{font-size:11px;font-weight:500;white-space:nowrap;}
+.due-ok{color:var(--text3);}
+.due-soon{color:var(--amber);}
+.due-overdue{color:var(--red);font-weight:600;}
+/* Pipeline */
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:14px 24px 80px;overflow-x:auto;}
+.pipe-col{}
+.pipe-head{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);padding:7px 10px;background:var(--surface);border-radius:var(--radius-lg) var(--radius-lg) 0 0;border:1px solid var(--border);border-bottom:none;display:flex;align-items:center;justify-content:space-between;}
+.pipe-count{background:var(--accent-soft);color:var(--text3);padding:1px 7px;border-radius:100px;font-size:9px;}
+.pipe-items{display:flex;flex-direction:column;gap:5px;min-height:80px;padding:6px;background:var(--accent-soft);border:1px solid var(--border);border-radius:0 0 var(--radius-lg) var(--radius-lg);transition:background .15s;}
+.pipe-items.pipe-drag-over{background:rgba(79,116,200,0.08);border-color:var(--blue);border-style:dashed;}
+.pipe-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;cursor:grab;transition:border-color .13s,box-shadow .13s;}
+.pipe-card:hover{border-color:var(--accent);box-shadow:0 2px 6px rgba(17,24,39,0.08);}
+.pipe-empty{font-size:11px;color:var(--text3);padding:12px 6px;text-align:center;font-style:italic;}
+.pipe-card-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pipe-card-meta{font-size:10px;color:var(--text3);margin-top:2px;}
+/* Detail slide panel */
+.detail-overlay{display:none;position:fixed;inset:0;background:rgba(17,17,17,0.45);z-index:400;}
+.detail-overlay.open{display:block;}
+.detail-panel{position:fixed;right:0;top:0;bottom:0;width:400px;max-width:100vw;background:var(--surface);z-index:401;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .22s ease;}
+.detail-overlay.open .detail-panel{transform:translateX(0);}
+.detail-header{background:var(--accent);color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0;}
+.detail-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.08em;}
+.detail-close{background:none;border:none;color:rgba(255,255,255,0.6);font-size:22px;cursor:pointer;line-height:1;padding:2px;}
+.detail-close:hover{color:#fff;}
+.detail-body{padding:18px 20px;flex:1;}
+.detail-section{margin-bottom:18px;}
+.detail-section-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.detail-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-row-lbl{color:var(--text3);}
+.detail-row-val{color:var(--text);font-weight:500;}
+.detail-notes{font-size:13px;color:var(--text2);line-height:1.65;padding:10px 12px;background:var(--accent-soft);border-radius:var(--radius);white-space:pre-wrap;}
+.detail-actions{padding:16px 20px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
+.detail-section-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.status-row{display:flex;gap:5px;flex-wrap:wrap;}
+.status-btn{flex:1;min-width:70px;padding:7px 6px;text-align:center;font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:100px;background:var(--surface);color:var(--text3);cursor:pointer;transition:all .13s;font-family:'Inter',sans-serif;}
+.status-btn:hover{border-color:var(--accent);color:var(--accent);}
+.status-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+@media(max-width:700px){.summary-row{grid-template-columns:repeat(2,1fr);}.pipeline{grid-template-columns:repeat(3,1fr);}.order-meta{display:none;}.order-card .order-total,.order-card .chip,.order-card .order-due{display:none;}.order-card .chip-status-mobile{display:inline !important;}}
+@media(max-width:480px){.pipeline{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -248,50 +340,60 @@ tbody td.wrap{white-space:normal;max-width:220px;}
   </div>
 
   <!-- ORDERS -->
-  <div class="panel" id="panel-orders">
-    <div class="stats-bar" id="order-stats"></div>
-    <div class="toolbar">
-      <input class="search-input" id="order-search" placeholder="Search orders, customers, garments..." oninput="filterOrders()"/>
-      <select class="filter-select" id="order-status-filter" onchange="filterOrders()">
-        <option value="">All statuses</option>
-        <option value="inquiry">Inquiry</option>
-        <option value="confirmed">Confirmed</option>
-        <option value="in-progress">In Progress</option>
-        <option value="complete">Complete</option>
-        <option value="cancelled">Cancelled</option>
-      </select>
-      <select class="filter-select" id="order-payment-filter" onchange="filterOrders()">
-        <option value="">All payments</option>
-        <option value="owes">Owes</option>
-        <option value="deposit">Deposit</option>
-        <option value="paid">Paid</option>
-      </select>
-      <select class="filter-select" id="order-type-filter" onchange="filterOrders()">
-        <option value="">All types</option>
-        <option value="embroidery">Embroidery</option>
-        <option value="dtf">DTF</option>
-        <option value="combo">Combo</option>
+  <div class="panel" id="panel-orders" style="padding:0;">
+
+    <!-- Toolbar -->
+    <div class="orders-toolbar">
+      <div class="search-wrap">
+        <input class="search-inp" id="order-search" placeholder="Search orders, customers, notes..." oninput="filterOrders()"/>
+      </div>
+      <select class="filter-select" id="order-sort" onchange="filterOrders()">
+        <option value="date-desc">Newest first</option>
+        <option value="date-asc">Oldest first</option>
+        <option value="due-asc">Due date</option>
+        <option value="total-desc">Amount: high–low</option>
+        <option value="alpha-asc">Customer: A–Z</option>
       </select>
       <button class="btn-add" onclick="openDrawer('order',null)">+ Add Order</button>
     </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th style="width:32px;"></th>
-          <th onclick="sortOrders('order_date')">Order Date <span class="sort-icon" id="osort-order_date"></span></th>
-          <th onclick="sortOrders('customer')">Customer <span class="sort-icon" id="osort-customer"></span></th>
-          <th onclick="sortOrders('order_name')">Description <span class="sort-icon" id="osort-order_name"></span></th>
-          <th onclick="sortOrders('order_type')">Type <span class="sort-icon" id="osort-order_type"></span></th>
-          <th onclick="sortOrders('garment_type')">Garment <span class="sort-icon" id="osort-garment_type"></span></th>
-          <th onclick="sortOrders('quantity')">Qty <span class="sort-icon" id="osort-quantity"></span></th>
-          <th onclick="sortOrders('total_amount')">Amount <span class="sort-icon" id="osort-total_amount"></span></th>
-          <th onclick="sortOrders('payment_status')">Payment <span class="sort-icon" id="osort-payment_status"></span></th>
-          <th onclick="sortOrders('status')">Status <span class="sort-icon" id="osort-status"></span></th>
-          <th onclick="sortOrders('source')">Source <span class="sort-icon" id="osort-source"></span></th>
-          <th onclick="sortOrders('due_date')">Due <span class="sort-icon" id="osort-due_date"></span></th>
-        </tr></thead>
-        <tbody id="orders-tbody"></tbody>
-      </table>
+
+    <!-- Filter pills -->
+    <div class="filters">
+      <button class="fbtn active" onclick="setOrderFilter('all',this)">All</button>
+      <button class="fbtn f-emb" onclick="setOrderFilter('embroidery',this)">Embroidery</button>
+      <button class="fbtn f-dtf" onclick="setOrderFilter('dtf',this)">DTF</button>
+      <button class="fbtn" onclick="setOrderFilter('active',this)">Active</button>
+      <button class="fbtn" onclick="setOrderFilter('overdue',this)">Overdue</button>
+      <button class="fbtn" onclick="setOrderFilter('inquiry',this)">Inquiries</button>
+      <button class="fbtn" onclick="setOrderFilter('complete',this)">Completed</button>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="summary-row" id="order-stats"></div>
+
+    <!-- Inner tabs: List / Pipeline -->
+    <div class="inner-tabs" style="margin-top:10px;padding:0 24px;">
+      <button class="inner-tab active" onclick="setOrderView('list',this)">List View</button>
+      <button class="inner-tab" onclick="setOrderView('pipeline',this)">Pipeline</button>
+    </div>
+
+    <div class="inner-panel active" id="view-list">
+      <div class="order-list" id="order-list"></div>
+    </div>
+    <div class="inner-panel" id="view-pipeline">
+      <div class="pipeline" id="pipeline-board"></div>
+    </div>
+  </div>
+
+  <!-- ORDER DETAIL PANEL -->
+  <div class="detail-overlay" id="order-detail-overlay" onclick="closeOrderDetail()">
+    <div class="detail-panel" id="order-detail-panel" onclick="event.stopPropagation()">
+      <div class="detail-header">
+        <div class="detail-title" id="dp-title">Order Detail</div>
+        <button class="detail-close" onclick="closeOrderDetail()">×</button>
+      </div>
+      <div class="detail-body" id="dp-body"></div>
+      <div class="detail-actions" id="dp-actions"></div>
     </div>
   </div>
 
@@ -412,7 +514,7 @@ function sortCustomers(f){
 function sortOrders(f){
   if(orderSort.field===f)orderSort.dir=orderSort.dir==='asc'?'desc':'asc';
   else{orderSort.field=f;orderSort.dir='asc';}
-  updateSortIcons('o',orderSort,['order_date','customer','order_name','order_type','garment_type','quantity','total_amount','payment_status','status','source','due_date']);
+  // sort handled by order-sort dropdown
   filterOrders();
 }
 function updateSortIcons(pfx,sort,fields){
@@ -538,94 +640,267 @@ function backToCustomers(){
 // ── ORDERS ───────────────────────────────────────────────
 function renderOrderStats(){
   const thisYear=new Date().getFullYear();
-  const inquiries=orders.filter(o=>o.status==='inquiry').length;
-  const inProg=orders.filter(o=>o.status==='in-progress'||o.status==='confirmed').length;
+  const now=new Date();
+  const active=orders.filter(o=>['inquiry','confirmed','in-progress'].includes(o.status)).length;
+  const overdue=orders.filter(o=>o.due_date&&new Date(o.due_date+'T23:59:59')<now&&o.status!=='complete'&&o.status!=='cancelled').length;
   const owes=orders.filter(o=>o.payment_status==='owes'||o.payment_status==='deposit').reduce((s,o)=>s+(parseFloat(o.total_amount)||0),0);
   const yearRev=orders.filter(o=>{const d=o.order_date||o.created_at;return d&&new Date(d).getFullYear()===thisYear;}).reduce((s,o)=>s+(parseFloat(o.total_amount)||0),0);
   document.getElementById('order-stats').innerHTML=`
-    <div class="stat-card"><div class="val" style="color:var(--blue)">${inquiries}</div><div class="lbl">Open Inquiries</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--amber)">${inProg}</div><div class="lbl">In Progress</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--red)">${fmt(owes)}</div><div class="lbl">Outstanding</div></div>
-    <div class="stat-card"><div class="val" style="color:var(--green)">${fmtK(yearRev)}</div><div class="lbl">${thisYear} Revenue</div></div>`;
+    <div class="sc"><div class="sc-label">Active</div><div class="sc-val">${active}</div></div>
+    <div class="sc"><div class="sc-label">Overdue</div><div class="sc-val ${overdue>0?'red':''}">${overdue}</div></div>
+    <div class="sc"><div class="sc-label">Outstanding</div><div class="sc-val ${owes>0?'amber':''}">${fmtK(owes)}</div></div>
+    <div class="sc"><div class="sc-label">${thisYear} Revenue</div><div class="sc-val">${fmtK(yearRev)}</div></div>`;
 }
-function filterOrders(){
-  const q=document.getElementById('order-search').value.toLowerCase();
-  const status=document.getElementById('order-status-filter').value;
-  const payment=document.getElementById('order-payment-filter').value;
-  const type=document.getElementById('order-type-filter').value;
+
+let orderFilter='all';
+let orderViewMode='list';
+
+function setOrderFilter(f,el){
+  orderFilter=f;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  filterOrders();
+}
+function setOrderView(v,el){
+  orderViewMode=v;
+  document.querySelectorAll('.inner-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.inner-panel').forEach(p=>p.classList.remove('active'));
+  if(el)el.classList.add('active');
+  document.getElementById('view-'+v).classList.add('active');
+  filterOrders();
+}
+
+function getFilteredOrders(){
+  const q=document.getElementById('order-search')?.value.toLowerCase()||'';
+  const sortVal=document.getElementById('order-sort')?.value||'date-desc';
+  const now=new Date();
   let list=orders.filter(o=>{
     const name=custName(o.customer_id,o.customer_name_manual).toLowerCase();
     const mq=!q||o.order_name?.toLowerCase().includes(q)||o.order_id?.toLowerCase().includes(q)||name.includes(q)||o.garment_type?.toLowerCase().includes(q)||o.notes?.toLowerCase().includes(q);
-    return mq&&(!status||o.status===status)&&(!payment||o.payment_status===payment)&&(!type||o.order_type===type);
+    if(!mq)return false;
+    if(orderFilter==='all')return true;
+    if(orderFilter==='embroidery')return o.order_type==='embroidery';
+    if(orderFilter==='dtf')return o.order_type==='dtf';
+    if(orderFilter==='active')return ['inquiry','confirmed','in-progress'].includes(o.status);
+    if(orderFilter==='overdue')return o.due_date&&new Date(o.due_date+'T23:59:59')<now&&o.status!=='complete'&&o.status!=='cancelled';
+    if(orderFilter==='inquiry')return o.status==='inquiry';
+    if(orderFilter==='complete')return o.status==='complete';
+    return true;
   });
-  list=applySort(list,orderSort,(o,f)=>{
-    if(f==='customer')return custName(o.customer_id,o.customer_name_manual);
-    if(f==='total_amount'||f==='quantity')return parseFloat(o[f])||0;
-    return o[f];
+  list.sort((a,b)=>{
+    if(sortVal==='date-desc')return new Date(b.order_date||b.created_at||0)-new Date(a.order_date||a.created_at||0);
+    if(sortVal==='date-asc')return new Date(a.order_date||a.created_at||0)-new Date(b.order_date||b.created_at||0);
+    if(sortVal==='due-asc'){const ad=a.due_date?new Date(a.due_date):new Date('9999');const bd=b.due_date?new Date(b.due_date):new Date('9999');return ad-bd;}
+    if(sortVal==='total-desc')return(parseFloat(b.total_amount)||0)-(parseFloat(a.total_amount)||0);
+    if(sortVal==='alpha-asc')return custName(a.customer_id,a.customer_name_manual).localeCompare(custName(b.customer_id,b.customer_name_manual));
+    return 0;
   });
-  renderOrderRows(list);
+  return list;
+}
+
+function filterOrders(){
+  const list=getFilteredOrders();
+  if(orderViewMode==='pipeline')renderPipeline(list);
+  else renderOrderCards(list);
 }
 function renderOrders(){filterOrders();}
 
-function orderRowHtml(o, inDetail=false){
-  const id=o.id;
-  const isExp=expandedRows.has(id);
-  const cols=inDetail?10:12;
-  const mainRow=`<tr class="data-row" id="row-${id}" onclick="openDrawer('order','${id}')">
-    <td onclick="event.stopPropagation();toggleExpand('${id}',${cols})" style="text-align:center;width:32px;">
-      <button class="expand-btn ${isExp?'open':''}" id="exp-btn-${id}">${o.notes||o.files_url?'▶':'·'}</button>
-    </td>
-    <td class="primary">${fmtDate(o.order_date)}</td>
-    ${!inDetail?`<td>${custName(o.customer_id,o.customer_name_manual)}</td>`:''}
-    <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;">${o.order_name||'—'}</td>
-    <td>${o.order_type||'—'}</td>
-    <td>${o.garment_type||'—'}</td>
-    <td>${o.quantity||1}</td>
-    <td>${fmt(o.total_amount)}</td>
-    <td>${payBadge(o.payment_status)}</td>
-    <td>${statusBadge(o.status)}</td>
-    ${!inDetail?`<td>${srcBadge(o.source)}</td>`:''}
-    <td>${fmtDate(o.due_date)}</td>
-  </tr>`;
+function getDueClass(d){
+  if(!d)return '';
+  const now=new Date();
+  const due=new Date(d+'T23:59:59');
+  const diff=(due-now)/(1000*60*60*24);
+  if(diff<0)return 'due-overdue';
+  if(diff<=3)return 'due-soon';
+  return 'due-ok';
+}
+function getDueLabel(d){
+  if(!d)return '';
+  const now=new Date();
+  const due=new Date(d+'T23:59:59');
+  const diff=Math.ceil((due-now)/(1000*60*60*24));
+  if(diff<0)return `${Math.abs(diff)}d overdue`;
+  if(diff===0)return 'Today';
+  if(diff===1)return 'Tomorrow';
+  if(diff<=7)return `${diff}d`;
+  return fmtDate(d);
+}
+function getTypeBadge(t){
+  if(t==='embroidery')return'<div class="order-type-badge badge-emb">EMB</div>';
+  if(t==='dtf')return'<div class="order-type-badge badge-dtf">DTF</div>';
+  if(t==='combo')return'<div class="order-type-badge badge-combo">BOTH</div>';
+  return'<div class="order-type-badge badge-other">?</div>';
+}
+function getStatusChip(s){
+  const map={inquiry:'chip-inquiry',confirmed:'chip-confirmed','in-progress':'chip-in-progress',complete:'chip-complete',cancelled:'chip-cancelled'};
+  return`<span class="chip ${map[s]||'chip-inquiry'}">${s||'—'}</span>`;
+}
+function getPayChip(s){
+  const map={owes:'chip-pay-owes',deposit:'chip-pay-deposit',paid:'chip-pay-paid',free:'chip-pay-free'};
+  const lbl={owes:'Owes',deposit:'Deposit',paid:'Paid',free:'Free'};
+  return`<span class="chip ${map[s]||'chip-pay-owes'}">${lbl[s]||s||'—'}</span>`;
+}
 
-  const detailRow=`<tr class="detail-row" id="detail-${id}" style="display:${isExp?'table-row':'none'}">
-    <td colspan="${cols}">
-      <div class="detail-panel">
-        <div class="detail-grid">
-          <div class="detail-item"><label>Order ID</label><span>${o.order_id||'—'}</span></div>
-          <div class="detail-item"><label>Order Date</label><span>${fmtDate(o.order_date)}</span></div>
-          <div class="detail-item"><label>Due Date</label><span>${fmtDate(o.due_date)}</span></div>
-          <div class="detail-item"><label>Submitted</label><span>${fmtDT(o.created_at)}</span></div>
-          <div class="detail-item"><label>Source</label><span>${o.source||'—'}</span></div>
-          <div class="detail-item"><label>Files / Design</label><span>${o.files_url?`<a href="${o.files_url}" target="_blank" style="color:var(--blue)">View File</a>`:'—'}</span></div>
-          <div class="detail-item"><label>Customer</label><span>${custName(o.customer_id,o.customer_name_manual)}</span></div>
-          <div class="detail-item"><label>Garment</label><span>${o.garment_type||'—'}</span></div>
-        </div>
-        ${o.notes?`<div class="notes-box">${o.notes}</div>`:'<div style="font-size:12px;color:var(--text3);font-style:italic;">No notes</div>'}
-        <div style="margin-top:12px;">
-          <button class="btn-outline" style="font-size:11px;padding:6px 12px;" onclick="openDrawer('order','${o.id}')">Edit Order</button>
-        </div>
+function renderOrderCards(list){
+  const el=document.getElementById('order-list');
+  if(!list.length){el.innerHTML='<div class="order-empty"><strong>No Orders</strong>No orders match this filter.</div>';return;}
+  el.innerHTML=list.map(o=>{
+    const name=custName(o.customer_id,o.customer_name_manual);
+    const dueClass=getDueClass(o.due_date);
+    const dueLabel=getDueLabel(o.due_date);
+    return`<div class="order-card" onclick="openOrderDetail('${o.id}')">
+      ${getTypeBadge(o.order_type)}
+      <div class="order-main">
+        <div class="order-customer">${name}</div>
+        <div class="order-item">${o.order_name||'—'}${o.garment_type?' · '+o.garment_type:''}</div>
+        ${o.notes?`<div class="order-note-preview">${o.notes.substring(0,80)}</div>`:''}
       </div>
-    </td>
-  </tr>`;
-  return mainRow+detailRow;
+      <div class="order-meta">
+        <span class="order-total">${fmt(o.total_amount)}</span>
+        ${getStatusChip(o.status)}
+        ${getPayChip(o.payment_status)}
+        ${dueLabel?`<span class="order-due ${dueClass}">📅 ${dueLabel}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function renderOrderRows(list){
-  const tbody=document.getElementById('orders-tbody');
-  if(!list.length){tbody.innerHTML=`<tr><td colspan="12"><div class="empty-state"><strong>No orders</strong><p>Add an order or submit the order form.</p></div></td></tr>`;return;}
-  tbody.innerHTML=list.map(o=>orderRowHtml(o,false)).join('');
+// ── PIPELINE BOARD ────────────────────────────────────────
+const PIPELINE_STAGES=[
+  {key:'inquiry',label:'Inquiry'},
+  {key:'confirmed',label:'Confirmed'},
+  {key:'in-progress',label:'In Progress'},
+  {key:'complete',label:'Complete'},
+  {key:'cancelled',label:'Cancelled'},
+];
+let dragOrderId=null;
+
+function renderPipeline(list){
+  const board=document.getElementById('pipeline-board');
+  const byStatus={};
+  PIPELINE_STAGES.forEach(s=>byStatus[s.key]=[]);
+  list.forEach(o=>{const k=o.status||'inquiry';if(byStatus[k])byStatus[k].push(o);else byStatus['inquiry'].push(o);});
+  board.innerHTML=PIPELINE_STAGES.map(s=>`
+    <div class="pipe-col">
+      <div class="pipe-head">${s.label}<span class="pipe-count">${byStatus[s.key].length}</span></div>
+      <div class="pipe-items" id="pipe-${s.key}"
+        ondragover="pipeDragOver(event,'${s.key}')"
+        ondragleave="pipeDragLeave(event)"
+        ondrop="pipeDrop(event,'${s.key}')">
+        ${byStatus[s.key].length?byStatus[s.key].map(o=>`
+          <div class="pipe-card" draggable="true"
+            ondragstart="pipeDragStart(event,'${o.id}')"
+            ondragend="pipeDragEnd(event)"
+            onclick="openOrderDetail('${o.id}')">
+            <div class="pipe-card-name">${custName(o.customer_id,o.customer_name_manual)}</div>
+            <div class="pipe-card-meta">${o.order_name||'—'} · ${fmt(o.total_amount)}${o.due_date?' · 📅 '+getDueLabel(o.due_date):''}</div>
+          </div>`).join(''):'<div class="pipe-empty">Drop here</div>'}
+      </div>
+    </div>`).join('');
+}
+function pipeDragStart(e,id){dragOrderId=id;e.currentTarget.style.opacity='0.5';}
+function pipeDragEnd(e){e.currentTarget.style.opacity='1';dragOrderId=null;}
+function pipeDragOver(e,status){e.preventDefault();document.getElementById('pipe-'+status)?.classList.add('pipe-drag-over');}
+function pipeDragLeave(e){e.currentTarget.classList.remove('pipe-drag-over');}
+async function pipeDrop(e,status){
+  e.preventDefault();
+  e.currentTarget.classList.remove('pipe-drag-over');
+  if(!dragOrderId)return;
+  const o=orders.find(x=>x.id===dragOrderId);
+  if(!o||o.status===status)return;
+  try{
+    await api.updateOrder(dragOrderId,{status});
+    o.status=status;
+    renderOrderStats();
+    filterOrders();
+    showToast('Status updated to '+status);
+  }catch(err){alert('Update failed: '+err.message);}
 }
 
-function toggleExpand(id,cols){
-  const detailRow=document.getElementById('detail-'+id);
-  const btn=document.getElementById('exp-btn-'+id);
-  if(!detailRow)return;
-  const isOpen=detailRow.style.display!=='none';
-  detailRow.style.display=isOpen?'none':'table-row';
-  btn.classList.toggle('open',!isOpen);
-  if(!isOpen)expandedRows.add(id);else expandedRows.delete(id);
+// ── ORDER DETAIL PANEL ────────────────────────────────────
+function openOrderDetail(id){
+  const o=orders.find(x=>x.id===id);
+  if(!o)return;
+  const name=custName(o.customer_id,o.customer_name_manual);
+  const dp=document.getElementById('dp-body');
+  const da=document.getElementById('dp-actions');
+  document.getElementById('dp-title').textContent=name;
+
+  dp.innerHTML=`
+    <div class="detail-section">
+      <div class="detail-section-label">Order Info</div>
+      <div class="detail-row"><span class="detail-row-lbl">Order ID</span><span class="detail-row-val">${o.order_id||'—'}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Description</span><span class="detail-row-val">${o.order_name||'—'}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Type</span><span class="detail-row-val">${o.order_type||'—'}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Garment</span><span class="detail-row-val">${o.garment_type||'—'}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Quantity</span><span class="detail-row-val">${o.quantity||1}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Total</span><span class="detail-row-val">${fmt(o.total_amount)}</span></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-label">Dates & Source</div>
+      <div class="detail-row"><span class="detail-row-lbl">Order Date</span><span class="detail-row-val">${fmtDate(o.order_date)}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Due Date</span><span class="detail-row-val ${getDueClass(o.due_date)}">${fmtDate(o.due_date)||'—'}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Submitted</span><span class="detail-row-val">${fmtDT(o.created_at)}</span></div>
+      <div class="detail-row"><span class="detail-row-lbl">Source</span><span class="detail-row-val">${o.source||'—'}</span></div>
+      ${o.files_url?`<div class="detail-row"><span class="detail-row-lbl">Files</span><span class="detail-row-val"><a href="${o.files_url}" target="_blank" style="color:var(--blue)">View File ↗</a></span></div>`:''}
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-label">Payment</div>
+      <div class="detail-row"><span class="detail-row-lbl">Status</span><span class="detail-row-val">${getPayChip(o.payment_status)}</span></div>
+    </div>
+    ${o.notes?`<div class="detail-section"><div class="detail-section-label">Notes</div><div class="detail-notes">${o.notes}</div></div>`:''}
+  `;
+
+  da.innerHTML=`
+    <div>
+      <div class="detail-section-label" style="margin-bottom:6px;">Update Status</div>
+      <div class="status-row">
+        ${PIPELINE_STAGES.map(s=>`<button class="status-btn ${o.status===s.key?'active':''}" onclick="updateOrderStatus('${id}','${s.key}',this)">${s.label}</button>`).join('')}
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="btn-outline" style="flex:1;" onclick="openDrawer('order','${id}');closeOrderDetail()">Edit Order</button>
+      <button class="btn-add" style="flex:1;" onclick="markOrderPaid('${id}')">Mark Paid</button>
+    </div>`;
+
+  document.getElementById('order-detail-overlay').classList.add('open');
 }
+
+function closeOrderDetail(){
+  document.getElementById('order-detail-overlay').classList.remove('open');
+}
+
+async function updateOrderStatus(id,status,btn){
+  try{
+    await api.updateOrder(id,{status});
+    const o=orders.find(x=>x.id===id);
+    if(o)o.status=status;
+    // Update active buttons
+    btn.closest('.status-row').querySelectorAll('.status-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderOrderStats();filterOrders();
+    showToast('Status: '+status);
+  }catch(e){alert(e.message);}
+}
+
+async function markOrderPaid(id){
+  try{
+    await api.updateOrder(id,{payment_status:'paid'});
+    const o=orders.find(x=>x.id===id);
+    if(o)o.payment_status='paid';
+    closeOrderDetail();
+    renderOrderStats();filterOrders();
+    showToast('Marked as paid');
+  }catch(e){alert(e.message);}
+}
+
+function showToast(msg){
+  let t=document.getElementById('ttc-toast');
+  if(!t){t=document.createElement('div');t.id='ttc-toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--accent);color:#fff;padding:10px 20px;border-radius:var(--radius);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;opacity:0;transition:all .2s;z-index:999;border-left:3px solid var(--green);';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(16px)';},2200);
+}
+
 
 // ── ANALYTICS ────────────────────────────────────────────
 function renderAnalytics(){
